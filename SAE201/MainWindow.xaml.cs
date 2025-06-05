@@ -50,7 +50,17 @@ namespace SAE201
         {
             this.Hide();
             var connexion = new Connexion();
-            connexion.ShowDialog();
+            bool? result = connexion.ShowDialog();
+            if (result == true)
+            {
+                // Connexion réussie, on réaffiche la fenêtre principale
+                this.Show();
+            }
+            else
+            {
+                // Connexion annulée ou échouée, on ferme l'application
+                Application.Current.Shutdown();
+            }
         }
     }
 }

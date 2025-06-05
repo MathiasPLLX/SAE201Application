@@ -20,6 +20,7 @@ namespace SAE201
         private void butConnecter_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+            
         }
     }
 }
