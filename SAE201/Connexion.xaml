@@ -12,12 +12,12 @@
         <Image Margin="443,11,443,583" Source="/Image/Nicolas_logo.png" Stretch="Fill"/>
         <Label Content="Connexion" HorizontalAlignment="Center" Height="72" Margin="0,137,0,0" VerticalAlignment="Top" Width="250" FontSize="48" FontWeight="Bold"/>
         <Label x:Name="lab_identifiant" Content="Identifiant" HorizontalAlignment="Center" Margin="0,278,0,0" VerticalAlignment="Top" FontSize="24" Width="280"/>
-        <TextBox x:Name="text_identifiant" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" Height="25" Margin="0,320,0,0"/>
+        <TextBox x:Name="TextBoxIdentifiant" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" Height="25" Margin="0,320,0,0"/>
         <Label x:Name="lab_mdp" Content="Mot de passe" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" FontSize="24" Width="280"/>
-        <PasswordBox PasswordChar="*" Margin="491,423,473,236" FontSize="14" MaxLength="30" />
-        <Button Content="Se connecter" HorizontalAlignment="Center" Margin="0,496,0,0" VerticalAlignment="Top" Width="130" FontSize="20" BorderBrush="Black" Background="#FFEEACAC" Click="Button_Click">
+        <PasswordBox x:Name="PasswordBoxMotDePasse" PasswordChar="*" Margin="500,423,500,255" FontSize="14" MaxLength="30" />
+        <Button x:Name="butConnecter" Content="Se connecter" HorizontalAlignment="Center" Margin="0,496,0,0" VerticalAlignment="Top" Width="130" FontSize="20" BorderBrush="Black" Background="#FFEEACAC" Click="butConnecter_Click">
         </Button>
-        <Button Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_Quitter"/>
+        <Button Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butQuitter_Click"/>
     </Grid>
 
 </Window>

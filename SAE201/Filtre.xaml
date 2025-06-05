@@ -1,27 +1,27 @@
-﻿<Window x:Class="SAE201.Filtre"
+﻿<Window x:Name="windowFiltre" x:Class="SAE201.Filtre"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201"
         mc:Ignorable="d"
-        Title="Filtre" Height="620" Width="720" WindowStartupLocation="CenterScreen">
+        Title="Filtre" Height="620" Width="720" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Rectangle HorizontalAlignment="Center" Height="505" VerticalAlignment="Top" Width="720" Fill="#FFFFDFDF" Margin="0,99,0,0"/>
         <Rectangle HorizontalAlignment="Center" Height="99" VerticalAlignment="Top" Width="720" Fill="#FFE5AEAE"/>
         <Label Content="Filtre" HorizontalAlignment="Center" Height="72" Margin="0,14,0,0" VerticalAlignment="Top" Width="124" FontSize="48" FontWeight="Bold"/>
 
-        <CheckBox x:Name="check_blanc" Content="Blanc" HorizontalAlignment="Left" Margin="65,248,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <CheckBox x:Name="check_rose" Content="Rosé" HorizontalAlignment="Left" Margin="65,315,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <CheckBox x:Name="check_rouge" Content="Rouge" HorizontalAlignment="Left" Margin="65,383,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_blanc" Content="Blanc" HorizontalAlignment="Left" Margin="65,248,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_rose" Content="Rosé" HorizontalAlignment="Left" Margin="65,315,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_rouge" Content="Rouge" HorizontalAlignment="Left" Margin="65,383,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label x:Name="lab_type_vin" Content="Type de vin" HorizontalAlignment="Left" Margin="65,154,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
-        <CheckBox x:Name="check_bourgogne" Content="Bourgogne" HorizontalAlignment="Left" Margin="290,248,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <CheckBox x:Name="check_bordeaux" Content="Bordeaux" HorizontalAlignment="Left" Margin="290,315,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <CheckBox x:Name="check_italien" Content="Italien" HorizontalAlignment="Left" Margin="290,383,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_bourgogne" Content="Bourgogne" HorizontalAlignment="Left" Margin="290,248,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_bordeaux" Content="Bordeaux" HorizontalAlignment="Left" Margin="290,315,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_italien" Content="Italien" HorizontalAlignment="Left" Margin="290,383,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label x:Name="lab_type_appellation_vin" Content="Appellation du vin" HorizontalAlignment="Center" Margin="0,154,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
         <Label x:Name="lab_annee_vin" Content="Année du vin" HorizontalAlignment="Left" Margin="514,154,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
-        <Button Content="Appliquer" HorizontalAlignment="Left" Height="43" Margin="445,493,0,0" VerticalAlignment="Top" Width="180" Background="#FFEEACAC" FontSize="20" Click="Button_Click_Appliquer"/>
-        <Button Content="Annuler" HorizontalAlignment="Left" Height="43" Margin="95,493,0,0" VerticalAlignment="Top" Width="180" Background="#FFEEACAC" FontSize="20" Click="Button_Click_Annuler"/>
-        <TextBox x:Name="text_annee" HorizontalAlignment="Left" Margin="514,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25"/>
+        <Button x:Name="butAppliquer" Content="Appliquer" HorizontalAlignment="Left" Height="43" Margin="445,493,0,0" VerticalAlignment="Top" Width="180" Background="#FFEEACAC" FontSize="20" Click="butAppliquer_Click"/>
+        <Button x:Name="butAnnuler" Content="Annuler" HorizontalAlignment="Left" Height="43" Margin="95,493,0,0" VerticalAlignment="Top" Width="180" Background="#FFEEACAC" FontSize="20" Click="butAnnuler_Click"/>
+        <TextBox x:Name="textBox_annee" HorizontalAlignment="Left" Margin="514,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25"/>
     </Grid>
 </Window>

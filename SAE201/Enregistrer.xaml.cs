@@ -14,14 +14,13 @@ namespace SAE201
             mainwindow_enregistrer = mainwindow;
         }
 
-        private void Button_Click_Accueil(object sender, RoutedEventArgs e)
+        private void butAccueil_Click(object sender, RoutedEventArgs e)
         {
             mainwindow_enregistrer.Show();
             this.Close();
+        }
 
-    }
-
-        private void Button_Click_Quitter(object sender, RoutedEventArgs e)
+        private void butQuitter_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }

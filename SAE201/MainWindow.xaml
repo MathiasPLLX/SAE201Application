@@ -1,11 +1,11 @@
-﻿<Window x:Class="SAE201.MainWindow"
+﻿<Window x:Name="fenetrePrincipale" x:Class="SAE201.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Menu DockPanel.Dock="Top" Width="1280" Height="20" Panel.ZIndex="1" VerticalAlignment="Top">
             <MenuItem x:Name="menuVin" Header="_Vins" Click="menu_ajouter_Click" BorderBrush="Black">

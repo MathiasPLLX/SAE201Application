@@ -15,21 +15,21 @@ namespace SAE201
             mainwindow_rechercher = mainwindow;
         }
 
-        private void Button_Click_Quitter(object sender, RoutedEventArgs e)
+        private void butAccueil_Click(object sender, RoutedEventArgs e)
+        {
+            mainwindow_rechercher.Show();
+            this.Close();
+        }
+
+        private void butQuitter_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        private void Button_Click_Filtre(object sender, RoutedEventArgs e)
+        private void butFiltre_Click(object sender, RoutedEventArgs e)
         {
             Filtre filtre = new Filtre();
             filtre.ShowDialog();
-        }
-
-        private void Button_Click_Accueil(object sender, RoutedEventArgs e)
-        {
-            mainwindow_rechercher.Show();
-            this.Close();
         }
     }
 }

@@ -12,14 +12,14 @@ namespace SAE201
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = true;
-        }
-
-        private void Button_Click_Quitter(object sender, RoutedEventArgs e)
+        private void butQuitter_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void butConnecter_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
     }
 }
