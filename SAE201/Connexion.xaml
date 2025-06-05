@@ -1,0 +1,23 @@
+﻿<Window x:Name="connexion" x:Class="SAE201.Connexion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SAE201"
+        mc:Ignorable="d"
+        Title="Connexion" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
+        <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
+        <Image Margin="443,11,443,583" Source="/Image/Nicolas_logo.png" Stretch="Fill"/>
+        <Label Content="Connexion" HorizontalAlignment="Center" Height="72" Margin="0,137,0,0" VerticalAlignment="Top" Width="250" FontSize="48" FontWeight="Bold"/>
+        <Label x:Name="lab_identifiant" Content="Identifiant" HorizontalAlignment="Center" Margin="0,278,0,0" VerticalAlignment="Top" FontSize="24" Width="280"/>
+        <TextBox x:Name="text_identifiant" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" Height="25" Margin="0,320,0,0"/>
+        <Label x:Name="lab_mdp" Content="Mot de passe" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" FontSize="24" Width="280"/>
+        <PasswordBox PasswordChar="*" Margin="491,423,473,236" FontSize="14" MaxLength="30" />
+        <Button Content="Se connecter" HorizontalAlignment="Center" Margin="0,496,0,0" VerticalAlignment="Top" Width="130" FontSize="20" BorderBrush="Black" Background="#FFEEACAC" Click="Button_Click">
+        </Button>
+        <Button Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_Quitter"/>
+    </Grid>
+
+</Window>

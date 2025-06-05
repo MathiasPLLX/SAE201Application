@@ -1,0 +1,23 @@
+﻿<Window x:Class="SAE201.Rechercher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SAE201"
+        mc:Ignorable="d"
+        Title="Rechercher" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
+        <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
+        <Button Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_Quitter"/>
+        <Button Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_Accueil"/>
+        <Image Margin="61,173,286,41" Source="/Image/Tableau_exemple.jpg" Stretch="Fill"/>
+        <Label Content="Rechercher" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="260" FontSize="48" FontWeight="Bold"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="1056,173,0,0" VerticalAlignment="Top" Height="76" Width="80" Click="Button_Click_Filtre">
+            <Button.Background>
+                <ImageBrush ImageSource="/Image/Entoinnoir_logo.png"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>
