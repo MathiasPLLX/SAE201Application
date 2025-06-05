@@ -14,23 +14,11 @@ namespace SAE201
             connexion.ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void menu_rechercher_Click(object sender, RoutedEventArgs e)
         {
             var rechercher = new Rechercher(this);
             this.Hide();
             rechercher.ShowDialog();
-        }
-
-        private void Button_Click_deco(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            var connexion = new Connexion();
-            connexion.ShowDialog();
         }
 
         private void menu_ajouter_Click(object sender, RoutedEventArgs e)
@@ -47,11 +35,22 @@ namespace SAE201
             refuser.ShowDialog();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void ButtonQuitterMainWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MenuEnregistrer_Click(object sender, RoutedEventArgs e)
         {
             var enrigstrer = new Enregistrer(this);
             this.Hide();
             enrigstrer.ShowDialog();
+        }
+        private void but_deconnecter_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            var connexion = new Connexion();
+            connexion.ShowDialog();
         }
     }
 }

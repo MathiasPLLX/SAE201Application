@@ -8,22 +8,22 @@
         Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <Grid>
         <Menu DockPanel.Dock="Top" Width="1280" Height="20" Panel.ZIndex="1" VerticalAlignment="Top">
-            <MenuItem Header="_Vins" Click="menu_ajouter_Click" BorderBrush="Black">
+            <MenuItem x:Name="menuVin" Header="_Vins" Click="menu_ajouter_Click" BorderBrush="Black">
                 <MenuItem x:Name="menu_rechercher" Header="_Rechercher" Click="menu_rechercher_Click" />
                 <MenuItem Header="_Ajouter" />
             </MenuItem>
-            <MenuItem Header="_Commandes" Click="menu_ajouter_Click" BorderBrush="Black">
+            <MenuItem x:Name="menuCommande" Header="_Commandes" Click="menu_ajouter_Click" BorderBrush="Black">
                 <MenuItem x:Name="menu_refuser" Header="_Refuser" Click="menu_refuser_Click" />
-                <MenuItem Header="_Enregistrer" Click="MenuItem_Click" />
+                <MenuItem x:Name="menuEnregistrer" Header="_Enregistrer" Click="MenuEnregistrer_Click" />
             </MenuItem>
         </Menu>
         <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
         <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
         <Image Margin="443,22,443,572" Source="/Image/Nicolas_logo.png" Stretch="Fill"/>
-        <Button Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click"/>
+        <Button x:Name="butQuitterMainWindow" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="ButtonQuitterMainWindow_Click"/>
         <Image Margin="220,418,220,10" Source="/Image/Visualiser_vin_1.png" Stretch="Fill"/>
         <Image Margin="192,140,228,286" Source="/Image/Visualiser_vin_2.png" Stretch="Fill"/>
-        <Button x:Name="but_deconnecter" Content="Se déconnecter" HorizontalAlignment="Left" Margin="869,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_deco"/>
+        <Button x:Name="but_deconnecter" Content="Se déconnecter" HorizontalAlignment="Left" Margin="869,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="but_deconnecter_Click"/>
 
     </Grid>
 
