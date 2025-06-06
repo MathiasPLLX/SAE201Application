@@ -18,7 +18,7 @@ namespace SAE201
         {
             var rechercher = new Rechercher(this);
             this.Hide();
-            rechercher.ShowDialog();
+            rechercher.Show(); // Utilisez Show() au lieu de ShowDialog()
         }
 
         private void menu_ajouter_Click(object sender, RoutedEventArgs e)
