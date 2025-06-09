@@ -11,13 +11,20 @@
         <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
         <Button x:Name="butQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butQuitter_Click"/>
         <Button x:Name="butAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butAccueil_Click"/>
-        <Image Margin="61,173,286,41" Source="/Image/Tableau_exemple.jpg" Stretch="Fill"/>
         <Label Content="Rechercher" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="260" FontSize="48" FontWeight="Bold"/>
-        <Button x:Name="butFiltre" Content="" HorizontalAlignment="Left" Margin="1056,173,0,0" VerticalAlignment="Top" Height="76" Width="80" Click="butFiltre_Click">
+        <DataGrid x:Name="dgVins" Margin="141,171,329,39" Grid.Column="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Binding="{Binding Appellation, ValidatesOnExceptions=True}" Header="Appellation"></DataGridTextColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="butFiltre" Content="" HorizontalAlignment="Left" Margin="1056,236,0,0" VerticalAlignment="Top" Height="76" Width="80" Click="butFiltre_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/Image/Entoinnoir_logo.png"/>
             </Button.Background>
         </Button>
+        <TextBox HorizontalAlignment="Left" Height="31" Margin="986,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="253"/>
+        <Button Content="Rechercher" HorizontalAlignment="Left" Margin="1017,617,0,0" VerticalAlignment="Top" Height="18" Width="222"/>
 
     </Grid>
 </Window>

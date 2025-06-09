@@ -2,7 +2,7 @@ using System.Data;
 using Npgsql;
 
 
-namespace TD3_BindingBDPension.Model
+namespace SAE201
 {
 
     public  class DataAccess

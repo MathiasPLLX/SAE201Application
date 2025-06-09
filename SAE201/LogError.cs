@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace TD3_BindingBDPension.Model
+namespace SAE201
 {
     public class LogError
     {
