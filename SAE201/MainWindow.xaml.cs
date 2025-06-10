@@ -82,7 +82,7 @@ namespace SAE201
 
         private void menuCommande_Click(object sender, RoutedEventArgs e)
         {
-            Refuser refuserWindow = new Refuser(this)
+            MenuCommande refuserWindow = new MenuCommande(this)
             {
                 Left = this.Left,
                 Top = this.Top,

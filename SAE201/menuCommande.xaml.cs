@@ -5,10 +5,10 @@ namespace SAE201
     /// <summary>
     /// Logique d'interaction pour Refuser.xaml
     /// </summary>
-    public partial class Refuser : Window
+    public partial class MenuCommande : Window
     {
         private MainWindow mainwindow_refuser;
-        public Refuser(MainWindow mainwindow)
+        public MenuCommande(MainWindow mainwindow)
         {
             InitializeComponent();
             mainwindow_refuser = mainwindow;
