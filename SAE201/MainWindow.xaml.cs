@@ -16,23 +16,42 @@ namespace SAE201
 
         private void menu_rechercher_Click(object sender, RoutedEventArgs e)
         {
-            var rechercher = new Rechercher(this);
+            var rechercher = new Rechercher(this)
+            {
+                Left = this.Left,
+                Top = this.Top,
+                Width = this.Width,
+                Height = this.Height
+            };
             this.Hide();
             rechercher.Show(); // Utilisez Show() au lieu de ShowDialog()
         }
 
         private void menu_ajouter_Click(object sender, RoutedEventArgs e)
         {
-            var ajouter = new Ajouter(this);
+            var ajouter = new Ajouter(this)
+            {
+                Left = this.Left,
+                Top = this.Top,
+                Width = this.Width,
+                Height = this.Height
+            };
             this.Hide();
             ajouter.ShowDialog();
         }
 
         private void menu_refuser_Click(object sender, RoutedEventArgs e)
         {
-            var refuser = new Refuser(this);
+            Refuser refuserWindow = new Refuser(this)
+            {
+            Left = this.Left,
+            Top = this.Top,
+            Width = this.Width,
+            Height = this.Height
+            };
+
+            refuserWindow.Show();
             this.Hide();
-            refuser.ShowDialog();
         }
 
         private void ButtonQuitterMainWindow_Click(object sender, RoutedEventArgs e)
@@ -42,14 +61,26 @@ namespace SAE201
 
         private void MenuEnregistrer_Click(object sender, RoutedEventArgs e)
         {
-            var enrigstrer = new Enregistrer(this);
+            var enrigstrer = new Enregistrer(this)
+            {
+                Left = this.Left,
+                Top = this.Top,
+                Width = this.Width,
+                Height = this.Height
+            };
             this.Hide();
             enrigstrer.ShowDialog();
         }
         private void but_deconnecter_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            var connexion = new Connexion();
+            var connexion = new Connexion()
+            {
+                Left = this.Left,
+                Top = this.Top,
+                Width = this.Width,
+                Height = this.Height
+            };
             bool? result = connexion.ShowDialog();
             if (result == true)
             {

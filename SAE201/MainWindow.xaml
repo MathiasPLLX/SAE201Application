@@ -8,11 +8,11 @@
         Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Menu DockPanel.Dock="Top" Width="1280" Height="20" Panel.ZIndex="1" VerticalAlignment="Top">
-            <MenuItem x:Name="menuVin" Header="_Vins" Click="menu_ajouter_Click" BorderBrush="Black">
+            <MenuItem x:Name="menuVin" Header="_Vins" BorderBrush="Black">
                 <MenuItem x:Name="menu_rechercher" Header="_Rechercher" Click="menu_rechercher_Click" />
-                <MenuItem Header="_Ajouter" />
+                <MenuItem Header="_Ajouter" Click="menu_ajouter_Click" />
             </MenuItem>
-            <MenuItem x:Name="menuCommande" Header="_Commandes" Click="menu_ajouter_Click" BorderBrush="Black">
+            <MenuItem x:Name="menuCommande" Header="_Commandes" BorderBrush="Black">
                 <MenuItem x:Name="menu_refuser" Header="_Refuser" Click="menu_refuser_Click" />
                 <MenuItem x:Name="menuEnregistrer" Header="_Enregistrer" Click="MenuEnregistrer_Click" />
             </MenuItem>
@@ -21,10 +21,19 @@
         <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
         <Image Margin="443,22,443,572" Source="/Image/Nicolas_logo.png" Stretch="Fill"/>
         <Button x:Name="butQuitterMainWindow" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="ButtonQuitterMainWindow_Click"/>
-        <Image Margin="220,418,220,10" Source="/Image/Visualiser_vin_1.png" Stretch="Fill"/>
-        <Image Margin="192,140,228,286" Source="/Image/Visualiser_vin_2.png" Stretch="Fill"/>
         <Button x:Name="but_deconnecter" Content="Se déconnecter" HorizontalAlignment="Left" Margin="869,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="but_deconnecter_Click"/>
-
+        <DataGrid x:Name="dgEtatDemande" Margin="85,171,85,39" AutoGenerateColumns="False" ItemsSource="{Binding Demandes}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Numéro de demande" Width="*" Binding="{Binding NumDemande}"/>
+                <DataGridTextColumn Header="Numéro de vin" Width="*" Binding="{Binding NumVin}"/>
+                <DataGridTextColumn Header="Numéro d'employé" Width="*" Binding="{Binding NumEmploye}"/>
+                <DataGridTextColumn Header="Numéro de commande" Width="*" Binding="{Binding NumCommande}"/>
+                <DataGridTextColumn Header="NUméro de client" Width="*" Binding="{Binding NumClient}"/>
+                <DataGridTextColumn Header="Date de demande" Width="*" Binding="{Binding DateDemande}"/>
+                <DataGridTextColumn Header="Quantité de demande" Width="*" Binding="{Binding QuantiteDemande}"/>
+                <DataGridTextColumn Header="Etat de la demande" Width="*" Binding="{Binding Accepter}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 
 </Window>

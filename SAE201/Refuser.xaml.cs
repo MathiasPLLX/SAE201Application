@@ -7,7 +7,7 @@ namespace SAE201
     /// </summary>
     public partial class Refuser : Window
     {
-        private readonly MainWindow mainwindow_refuser;
+        private MainWindow mainwindow_refuser;
         public Refuser(MainWindow mainwindow)
         {
             InitializeComponent();
@@ -21,10 +21,12 @@ namespace SAE201
 
         private void Button_Click_Accueil(object sender, RoutedEventArgs e)
         {
-            mainwindow_refuser.Show();
-            this.Close();
+            mainwindow_refuser.Left = this.Left;
+            mainwindow_refuser.Top = this.Top;
 
-    }
+            mainwindow_refuser.Show(); // Affiche la fenêtre principale
+            this.Close(); // Ferme la fenêtre actuelle
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
