@@ -13,6 +13,10 @@
                 <MenuItem Header="_Ajouter" Click="menu_ajouter_Click" />
             </MenuItem>
             <MenuItem x:Name="menuCommande" Header="_Commandes" BorderBrush="Black">
+                <MenuItem x:Name="menuCommande_refuser" Header="_Refuser" Click="menu_refuser_Click" />
+                <MenuItem x:Name="menuCommandeEnregistrer" Header="_Enregistrer" Click="MenuEnregistrer_Click" />
+            </MenuItem>
+            <MenuItem x:Name="menuDemande" Header="_Demande" BorderBrush="Black">
                 <MenuItem x:Name="menu_refuser" Header="_Refuser" Click="menu_refuser_Click" />
                 <MenuItem x:Name="menuEnregistrer" Header="_Enregistrer" Click="MenuEnregistrer_Click" />
             </MenuItem>
