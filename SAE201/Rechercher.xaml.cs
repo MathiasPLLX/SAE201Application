@@ -35,9 +35,9 @@ namespace SAE201
             filtre.ShowDialog();
         }
 
-        private void textRechercher_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void filtrerDataGrid(string textRecherche)
         {
-            CollectionViewSource.GetDefaultView(dgVins.ItemsSource).Refresh();
+
         }
     }
 }

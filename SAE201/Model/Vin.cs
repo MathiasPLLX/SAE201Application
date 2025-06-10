@@ -22,6 +22,29 @@ namespace SAE201.Model
         public List<DetailCommande> DetailsCommandes { get; set; }
         public List<Demande> Demandes { get; set; }
 
+        // Propriétés récuparées pour affichage dans DataGrid
+        public string NomAppelation
+        {
+            get
+            {
+                if (Appelation != null)
+                    return Appelation.NomAppelation;
+                else
+                    return "Non définie";
+            }
+        }
+
+        public string NomType
+        {
+            get
+            {
+                if (TypeVin != null)
+                    return TypeVin.NomType;
+                else
+                    return "Non défini";
+            }
+        }
+
         public int Create()
         {
             var cmd = new NpgsqlCommand("INSERT INTO VIN(nomvin, prixvin, descriptif, millesime, numtype, numappelation, numfournisseur) VALUES (@nom, @prix, @desc, @mill, @type, @appel, @fourn) RETURNING numvin;");
@@ -51,6 +74,29 @@ namespace SAE201.Model
                 NumType = Convert.ToInt32(row["numtype"]);
                 NumAppelation = Convert.ToInt32(row["numappelation"]);
                 NumFournisseur = Convert.ToInt32(row["numfournisseur"]);
+
+                LoadRelatedObjects();
+            }
+        }
+
+        private void LoadRelatedObjects()
+        {
+            Appelation = new Appelation { NumAppelation = NumAppelation };
+            var cmdAppel = new NpgsqlCommand("SELECT * FROM APPELATION WHERE numappelation = @id;");
+            cmdAppel.Parameters.AddWithValue("@id", NumAppelation);
+            var tableAppel = DataAccess.Instance.ExecuteSelect(cmdAppel);
+            if (tableAppel.Rows.Count > 0)
+            {
+                Appelation.NomAppelation = tableAppel.Rows[0]["nomappelation"].ToString();
+            }
+
+            TypeVin = new TypeVin { NumType = NumType };
+            var cmdType = new NpgsqlCommand("SELECT * FROM TYPEVIN WHERE numtype = @id;");
+            cmdType.Parameters.AddWithValue("@id", NumType);
+            var tableType = DataAccess.Instance.ExecuteSelect(cmdType);
+            if (tableType.Rows.Count > 0)
+            {
+                TypeVin.NomType = tableType.Rows[0]["nomtype"].ToString();
             }
         }
 
@@ -78,14 +124,21 @@ namespace SAE201.Model
 
         public List<Vin> FindAll()
         {
-            var cmd = new NpgsqlCommand("SELECT * FROM VIN;");
+            var cmd = new NpgsqlCommand(@"SELECT v.*, a.nomappelation, t.nomtype 
+                                        FROM VIN v 
+                                        LEFT JOIN APPELATION a ON v.numappelation = a.numappelation 
+                                        LEFT JOIN TYPEVIN t ON v.numtype = t.numtype;");
             var table = DataAccess.Instance.ExecuteSelect(cmd);
             return ConvertToList(table);
         }
 
         public List<Vin> FindBySelection(string criteres)
         {
-            var cmd = new NpgsqlCommand("SELECT * FROM VIN WHERE nomvin ILIKE @crit;");
+            var cmd = new NpgsqlCommand(@"SELECT v.*, a.nomappelation, t.nomtype 
+                                        FROM VIN v 
+                                        LEFT JOIN APPELATION a ON v.numappelation = a.numappelation 
+                                        LEFT JOIN TYPEVIN t ON v.numtype = t.numtype 
+                                        WHERE v.nomvin ILIKE @crit;");
             cmd.Parameters.AddWithValue("@crit", "%" + criteres + "%");
             var table = DataAccess.Instance.ExecuteSelect(cmd);
             return ConvertToList(table);
@@ -97,7 +150,7 @@ namespace SAE201.Model
 
             foreach (DataRow row in table.Rows)
             {
-                list.Add(new Vin
+                var vin = new Vin
                 {
                     NumVin = Convert.ToInt32(row["numvin"]),
                     NomVin = row["nomvin"].ToString(),
@@ -107,7 +160,27 @@ namespace SAE201.Model
                     NumType = Convert.ToInt32(row["numtype"]),
                     NumAppelation = Convert.ToInt32(row["numappelation"]),
                     NumFournisseur = Convert.ToInt32(row["numfournisseur"])
-                });
+                };
+
+                if (table.Columns.Contains("nomappelation"))
+                {
+                    vin.Appelation = new Appelation
+                    {
+                        NumAppelation = vin.NumAppelation,
+                        NomAppelation = row["nomappelation"]?.ToString()
+                    };
+                }
+
+                if (table.Columns.Contains("nomtype"))
+                {
+                    vin.TypeVin = new TypeVin
+                    {
+                        NumType = vin.NumType,
+                        NomType = row["nomtype"]?.ToString()
+                    };
+                }
+
+                list.Add(vin);
             }
 
             return list;
