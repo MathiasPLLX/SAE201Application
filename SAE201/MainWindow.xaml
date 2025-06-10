@@ -21,10 +21,19 @@
         <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
         <Image Margin="443,22,443,572" Source="/Image/Nicolas_logo.png" Stretch="Fill"/>
         <Button x:Name="butQuitterMainWindow" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="ButtonQuitterMainWindow_Click"/>
-        <Image Margin="220,418,220,10" Source="/Image/Visualiser_vin_1.png" Stretch="Fill"/>
-        <Image Margin="192,140,228,286" Source="/Image/Visualiser_vin_2.png" Stretch="Fill"/>
         <Button x:Name="but_deconnecter" Content="Se déconnecter" HorizontalAlignment="Left" Margin="869,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="but_deconnecter_Click"/>
-
+        <DataGrid x:Name="dgEtatDemande" Margin="85,171,85,39" AutoGenerateColumns="False" ItemsSource="{Binding Demande}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Numéro de demande" Width="*" Binding="{Binding numdemande}"/>
+                <DataGridTextColumn Header="Numéro de vin" Width="*" Binding="{Binding numvin}"/>
+                <DataGridTextColumn Header="Numéro d'employé" Width="*" Binding="{Binding numemploye}"/>
+                <DataGridTextColumn Header="Numéro de commande" Width="*" Binding="{Binding numcommande}"/>
+                <DataGridTextColumn Header="NUméro de client" Width="*" Binding="{Binding numclient}"/>
+                <DataGridTextColumn Header="Date de demande" Width="*" Binding="{Binding datedemande}"/>
+                <DataGridTextColumn Header="Quantité de demande" Width="*" Binding="{Binding quantitedemande}"/>
+                <DataGridTextColumn Header="Etat de la demande" Width="*" Binding="{Binding accepter}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 
 </Window>
