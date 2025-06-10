@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SAE201;
+﻿using System.ComponentModel;
 
 namespace SAE201.ClassesVues
 {
@@ -19,7 +13,10 @@ namespace SAE201.ClassesVues
 
         public int NumVin
         {
-            get { return this.numVin; }
+            get
+            {
+                return this.numVin;
+            }
             set
             {
                 if (this.numVin != value)
@@ -32,7 +29,10 @@ namespace SAE201.ClassesVues
 
         public string NomVin
         {
-            get { return this.nomVin; }
+            get
+            {
+                return this.nomVin;
+            }
             set
             {
                 if (this.nomVin != value)
@@ -45,7 +45,10 @@ namespace SAE201.ClassesVues
 
         public string NomAppelation
         {
-            get { return this.nomAppelation; }
+            get
+            { 
+                return this.nomAppelation; 
+            }
             set
             {
                 if (this.nomAppelation != value)
@@ -58,7 +61,10 @@ namespace SAE201.ClassesVues
 
         public string NomType
         {
-            get { return this.nomType; }
+            get 
+            {
+                return this.nomType; 
+            }
             set
             {
                 if (this.nomType != value)
@@ -71,7 +77,10 @@ namespace SAE201.ClassesVues
 
         public decimal PrixVin
         {
-            get { return this.prixVin; }
+            get 
+            {
+                return this.prixVin;
+            }
             set
             {
                 if (this.prixVin != value)
@@ -84,7 +93,10 @@ namespace SAE201.ClassesVues
 
         public int Millesime
         {
-            get { return this.millesime; }
+            get 
+            { 
+                return this.millesime; 
+            }
             set
             {
                 if (this.millesime != value)
