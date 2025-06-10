@@ -14,19 +14,6 @@ namespace SAE201
             connexion.ShowDialog();
         }
 
-        private void menu_rechercher_Click(object sender, RoutedEventArgs e)
-        {
-            var rechercher = new Rechercher(this)
-            {
-                Left = this.Left,
-                Top = this.Top,
-                Width = this.Width,
-                Height = this.Height
-            };
-            this.Hide();
-            rechercher.Show(); // Utilisez Show() au lieu de ShowDialog()
-        }
-
         private void menu_ajouter_Click(object sender, RoutedEventArgs e)
         {
             var ajouter = new Ajouter(this)
@@ -38,20 +25,6 @@ namespace SAE201
             };
             this.Hide();
             ajouter.ShowDialog();
-        }
-
-        private void menu_refuser_Click(object sender, RoutedEventArgs e)
-        {
-            Refuser refuserWindow = new Refuser(this)
-            {
-            Left = this.Left,
-            Top = this.Top,
-            Width = this.Width,
-            Height = this.Height
-            };
-
-            refuserWindow.Show();
-            this.Hide();
         }
 
         private void ButtonQuitterMainWindow_Click(object sender, RoutedEventArgs e)
@@ -92,6 +65,38 @@ namespace SAE201
                 // Connexion annulée ou échouée, on ferme l'application
                 Application.Current.Shutdown();
             }
+        }
+
+        private void menuGestionVin_Click(object sender, RoutedEventArgs e)
+        {
+            var rechercher = new Rechercher(this)
+            {
+                Left = this.Left,
+                Top = this.Top,
+                Width = this.Width,
+                Height = this.Height
+            };
+            this.Hide();
+            rechercher.Show(); // Utilisez Show() au lieu de ShowDialog()
+        }
+
+        private void menuCommande_Click(object sender, RoutedEventArgs e)
+        {
+            Refuser refuserWindow = new Refuser(this)
+            {
+                Left = this.Left,
+                Top = this.Top,
+                Width = this.Width,
+                Height = this.Height
+            };
+
+            refuserWindow.Show();
+            this.Hide();
+        }
+
+        private void menuDemande_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
