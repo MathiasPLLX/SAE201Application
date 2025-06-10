@@ -82,8 +82,7 @@ namespace SAE201.Model
         private void LoadRelatedObjects()
         {
             Appelation = new Appelation { NumAppelation = NumAppelation };
-            var cmdAppel = new NpgsqlCommand("SELECT * FROM APPELATION WHERE numappelation = @id;");
-            cmdAppel.Parameters.AddWithValue("@id", NumAppelation);
+            NpgsqlCommand cmdAppel = new NpgsqlCommand($"SELECT * FROM APPELATION WHERE numappelation = {NumAppelation};");
             var tableAppel = DataAccess.Instance.ExecuteSelect(cmdAppel);
             if (tableAppel.Rows.Count > 0)
             {
