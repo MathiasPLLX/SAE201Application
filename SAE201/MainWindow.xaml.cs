@@ -46,6 +46,8 @@ namespace SAE201
         }
         private void but_deconnecter_Click(object sender, RoutedEventArgs e)
         {
+            StockageIdentifiant.IdentifiantStocke = null; // Réinitialiser l'identifiant stocké
+            StockageIdentifiant.MdpStocke = null; // Réinitialiser le mot de passe stocké
             this.Hide();
             var connexion = new Connexion()
             {
