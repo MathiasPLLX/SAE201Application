@@ -24,10 +24,10 @@ namespace SAE201.ClassesVues
                 {
                     NumVin = vin.NumVin,
                     NomVin = vin.NomVin,
-                    NomAppelation = vin.Appelation?.NomAppelation, // sécurité si Appelation est null
-                    NomType = vin.TypeVin?.NomType,                 // sécurité si TypeVin est null
-                    PrixVin = vin.PrixVin ?? 0,                    // sécurité si PrixVin est null
-                    Millesime = vin.Millesime ?? 0                 // sécurité si Millesime est null
+                    NomAppelation = vin.Appelation?.NomAppelation,
+                    NomType = vin.TypeVin?.NomType,
+                    PrixVin = vin.PrixVin ?? 0,
+                    Millesime = vin.Millesime ?? 0
                 });
             }
 
