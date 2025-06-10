@@ -1,5 +1,6 @@
 ﻿using SAE201.ClassesVues;
 using System.Windows;
+using System.Windows.Data;
 
 namespace SAE201
 {
@@ -32,6 +33,11 @@ namespace SAE201
         {
             Filtre filtre = new Filtre();
             filtre.ShowDialog();
+        }
+
+        private void textRechercher_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgVins.ItemsSource).Refresh();
         }
     }
 }
