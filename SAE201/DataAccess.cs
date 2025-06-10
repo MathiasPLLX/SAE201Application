@@ -5,10 +5,10 @@ using Npgsql;
 namespace SAE201
 {
 
-    public  class DataAccess
+    public class DataAccess
     {
         private static readonly DataAccess instance = new DataAccess();
-        private readonly string connectionString = $"Host=localhost;Port=5432;Username=postgres;Password=postgres;Database=SAE201BDD;Options='-c search_path=temporaire'";
+        private readonly string connectionString = $"Host=localhost;Port=5432;Username={StockageIdentifiant.IdentifiantStocke};Password={StockageIdentifiant.MdpStocke};Database=SAE201BDD;Options='-c search_path=temporaire'";
         private NpgsqlConnection connection;
 
         public static DataAccess Instance

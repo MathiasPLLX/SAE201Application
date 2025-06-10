@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Npgsql;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace SAE201
 {
@@ -19,8 +21,105 @@ namespace SAE201
 
         private void butConnecter_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
-            
+            // Vérifier que les champs ne sont pas vides
+            if (string.IsNullOrWhiteSpace(TextBoxIdentifiant.Text) ||
+                string.IsNullOrWhiteSpace(PasswordBoxMotDePasse.Password))
+            {
+                MessageBox.Show("Veuillez saisir un identifiant et un mot de passe.",
+                               "Champs obligatoires",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Warning);
+                return;
+            }
+
+            // Stocker temporairement les identifiants
+            string identifiant = TextBoxIdentifiant.Text;
+            string motDePasse = PasswordBoxMotDePasse.Password;
+
+            // Tenter la connexion à la base de données
+            if (TesterConnexionBDD(identifiant, motDePasse))
+            {
+                // Connexion réussie : stocker les identifiants
+                StockageIdentifiant.IdentifiantStocke = identifiant;
+                StockageIdentifiant.MdpStocke = motDePasse;
+                DialogResult = true;
+            }
+            else
+            {
+                // Connexion échouée : afficher un message d'erreur et vider les champs
+                MessageBox.Show("Identifiant ou mot de passe incorrect.\nVeuillez réessayer.",
+                               "Erreur de connexion",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Error);
+
+                // Vider les champs pour une nouvelle saisie
+                TextBoxIdentifiant.Text = "";
+                PasswordBoxMotDePasse.Password = "";
+                TextBoxIdentifiant.Focus();
+            }
         }
+
+        private bool TesterConnexionBDD(string identifiant, string motDePasse)
+        {
+            string connectionString = $"Host=localhost;Port=5432;Username={identifiant};Password={motDePasse};Database=SAE201BDD;Options='-c search_path=temporaire'";
+
+            try
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Test optionnel : exécuter une requête simple pour vérifier l'accès
+                    using (var cmd = new NpgsqlCommand("SELECT 1", connection))
+                    {
+                        cmd.ExecuteScalar();
+                    }
+                }
+                return true;
+            }
+            catch (NpgsqlException ex)
+            {
+                // Log de l'erreur (optionnel)
+                LogError.Log(ex, $"Échec de connexion pour l'utilisateur: {identifiant}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // Log des autres erreurs
+                LogError.Log(ex, $"Erreur inattendue lors de la connexion: {identifiant}");
+                return false;
+            }
+        }
+    }
+
+        public static class StockageIdentifiant
+        {
+            private static string identifiantStocke;
+            private static string mdpStocke;
+            public static string IdentifiantStocke
+            {
+                get
+                {
+                    return identifiantStocke;
+                }
+
+                set
+                {
+                    identifiantStocke = value;
+                }
+            }
+
+            public static string MdpStocke
+            {
+                get
+                {
+                    return mdpStocke;
+                }
+
+                set
+                {
+                    mdpStocke = value;
+                }
+            }
     }
 }
