@@ -22,95 +22,97 @@ namespace SAE201.Model
         public Commande Commande { get; set; }
         public Client Client { get; set; }
 
-        //        public int Create()
-        //        {
-        //            var cmd = new NpgsqlCommand("INSERT INTO DEMANDE(nomvin, prixvin, descriptif, millesime, numtype, numappelation, numfournisseur) VALUES (@nom, @prix, @desc, @mill, @type, @appel, @fourn) RETURNING numvin;");
-        //            cmd.Parameters.AddWithValue("@nom", NomVin);
-        //            cmd.Parameters.AddWithValue("@prix", PrixVin ?? (object)DBNull.Value);
-        //            cmd.Parameters.AddWithValue("@desc", Descriptif ?? (object)DBNull.Value);
-        //            cmd.Parameters.AddWithValue("@mill", Millesime ?? (object)DBNull.Value);
-        //            cmd.Parameters.AddWithValue("@type", NumType);
-        //            cmd.Parameters.AddWithValue("@appel", NumAppelation);
-        //            cmd.Parameters.AddWithValue("@fourn", NumFournisseur);
+        public int Create()
+        {
+            var cmd = new NpgsqlCommand("INSERT INTO DEMANDE(numdemande, numvin, numeploye, numcommande, numclient, datedemande, quantitedemande, accepter) VALUES (@numdemande, @numvin, @numemploye, @numcommande, @numclient, @datedemande, @quantitedemande, @accepter) RETURNING numdemande;");
+            cmd.Parameters.AddWithValue("@numdemande", NumDemande);
+            cmd.Parameters.AddWithValue("@numvin", NumVin);
+            cmd.Parameters.AddWithValue("@numemploye", NumEmploye);
+            cmd.Parameters.AddWithValue("@numcommande", NumCommande);
+            cmd.Parameters.AddWithValue("@numclient", NumClient);
+            cmd.Parameters.AddWithValue("@datedemande", DateDemande);
+            cmd.Parameters.AddWithValue("@quantitedemande", QuantiteDemande);
+            cmd.Parameters.AddWithValue("@accepter", Accepter);
 
-        //            return NumVin = DataAccess.Instance.ExecuteInsert(cmd);
-        //        }
+            return NumDemande = DataAccess.Instance.ExecuteInsert(cmd);
+        }
 
-        //        public void Read()
-        //        {
-        //            var cmd = new NpgsqlCommand("SELECT * FROM VIN WHERE numvin = @id;");
-        //            cmd.Parameters.AddWithValue("@id", NumVin);
-        //            var table = DataAccess.Instance.ExecuteSelect(cmd);
-        //            if (table.Rows.Count > 0)
-        //            {
-        //                var row = table.Rows[0];
-        //                NomVin = row["nomvin"].ToString();
-        //                PrixVin = row["prixvin"] == DBNull.Value ? null : (decimal?)Convert.ToDecimal(row["prixvin"]);
-        //                Descriptif = row["descriptif"].ToString();
-        //                Millesime = row["millesime"] == DBNull.Value ? null : (int?)Convert.ToInt32(row["millesime"]);
-        //                NumType = Convert.ToInt32(row["numtype"]);
-        //                NumAppelation = Convert.ToInt32(row["numappelation"]);
-        //                NumFournisseur = Convert.ToInt32(row["numfournisseur"]);
-        //            }
-        //        }
+        public void Read()
+        {
+            var cmd = new NpgsqlCommand("SELECT * FROM DEMANDE WHERE numdemande = @numdemande;");
+            cmd.Parameters.AddWithValue("@numdemande", NumDemande);
+            var table = DataAccess.Instance.ExecuteSelect(cmd);
+            if (table.Rows.Count > 0)
+            {
+                var row = table.Rows[0];
+                NumDemande = Convert.ToInt32(row["numdemande"]);
+                NumVin = Convert.ToInt32(row["numvin"]);
+                NumEmploye = Convert.ToInt32(row["numemploye"]);
+                NumCommande = Convert.ToInt32(row["numcommande"]);
+                NumClient = Convert.ToInt32(row["numclient"]);
+                DateDemande = Convert.ToDateTime(row["datedemande"]);
+                QuantiteDemande = Convert.ToInt32(row["quantitedemande"]);
+                Accepter = row["accepter"].ToString();
+            }
+        }
 
-        //        public int Update()
-        //        {
-        //            var cmd = new NpgsqlCommand("UPDATE VIN SET nomvin = @nom, prixvin = @prix, descriptif = @desc, millesime = @mill, numtype = @type, numappelation = @appel, numfournisseur = @fourn WHERE numvin = @id;");
-        //            cmd.Parameters.AddWithValue("@nom", NomVin);
-        //            cmd.Parameters.AddWithValue("@prix", PrixVin ?? (object)DBNull.Value);
-        //            cmd.Parameters.AddWithValue("@desc", Descriptif ?? (object)DBNull.Value);
-        //            cmd.Parameters.AddWithValue("@mill", Millesime ?? (object)DBNull.Value);
-        //            cmd.Parameters.AddWithValue("@type", NumType);
-        //            cmd.Parameters.AddWithValue("@appel", NumAppelation);
-        //            cmd.Parameters.AddWithValue("@fourn", NumFournisseur);
-        //            cmd.Parameters.AddWithValue("@id", NumVin);
+        public int Update()
+        {
+            var cmd = new NpgsqlCommand("UPDATE DEMANDE SET numvin = @numvin, numemploye = @numemploye, numcommande = @numcommande, numclient = @numclient, datedemande = @datedemande, quantitedemande = @quantitedemande, accetper = @accepter WHERE numdemande = @numdemande;");
+            cmd.Parameters.AddWithValue("@numdemande", NumDemande);
+            cmd.Parameters.AddWithValue("@numvin", NumVin);
+            cmd.Parameters.AddWithValue("@numemploye", NumEmploye);
+            cmd.Parameters.AddWithValue("@numcommande", NumCommande);
+            cmd.Parameters.AddWithValue("@numclient", NumClient);
+            cmd.Parameters.AddWithValue("@datedemande", DateDemande);
+            cmd.Parameters.AddWithValue("@quantitedemande", QuantiteDemande);
+            cmd.Parameters.AddWithValue("@accepter", Accepter);
 
-        //            return DataAccess.Instance.ExecuteSet(cmd);
-        //        }
+            return DataAccess.Instance.ExecuteSet(cmd);
+        }
 
-        //        public int Delete()
-        //        {
-        //            var cmd = new NpgsqlCommand("DELETE FROM VIN WHERE numvin = @id;");
-        //            cmd.Parameters.AddWithValue("@id", NumVin);
-        //            return DataAccess.Instance.ExecuteSet(cmd);
-        //        }
+        public int Delete()
+        {
+            var cmd = new NpgsqlCommand("DELETE FROM DEMANDE WHERE numdemande = @numdemande;");
+            cmd.Parameters.AddWithValue("@numdemande", NumDemande);
+            return DataAccess.Instance.ExecuteSet(cmd);
+        }
 
-        //        public List<Vin> FindAll()
-        //        {
-        //            var cmd = new NpgsqlCommand("SELECT * FROM VIN;");
-        //            var table = DataAccess.Instance.ExecuteSelect(cmd);
-        //            return ConvertToList(table);
-        //        }
+        public List<Demande> FindAll()
+        {
+            var cmd = new NpgsqlCommand("SELECT * FROM DEMANDE;");
+            var table = DataAccess.Instance.ExecuteSelect(cmd);
+            return ConvertToList(table);
+        }
 
-        //        public List<Vin> FindBySelection(string criteres)
-        //        {
-        //            var cmd = new NpgsqlCommand("SELECT * FROM VIN WHERE nomvin ILIKE @crit;");
-        //            cmd.Parameters.AddWithValue("@crit", "%" + criteres + "%");
-        //            var table = DataAccess.Instance.ExecuteSelect(cmd);
-        //            return ConvertToList(table);
-        //        }
+        public List<Demande> FindBySelection(string criteres)
+        {
+            var cmd = new NpgsqlCommand("SELECT * FROM DEMANDE WHERE numdemande ILIKE @crit;");
+            cmd.Parameters.AddWithValue("@crit", "%" + criteres + "%");
+            var table = DataAccess.Instance.ExecuteSelect(cmd);
+            return ConvertToList(table);
+        }
 
-        //        private List<Vin> ConvertToList(DataTable table)
-        //        {
-        //            var list = new List<Vin>();
+        private List<Demande> ConvertToList(DataTable table)
+        {
+            var list = new List<Demande>();
 
-        //            foreach (DataRow row in table.Rows)
-        //            {
-        //                list.Add(new Vin
-        //                {
-        //                    NumVin = Convert.ToInt32(row["numvin"]),
-        //                    NomVin = row["nomvin"].ToString(),
-        //                    PrixVin = row["prixvin"] == DBNull.Value ? null : (decimal?)Convert.ToDecimal(row["prixvin"]),
-        //                    Descriptif = row["descriptif"].ToString(),
-        //                    Millesime = row["millesime"] == DBNull.Value ? null : (int?)Convert.ToInt32(row["millesime"]),
-        //                    NumType = Convert.ToInt32(row["numtype"]),
-        //                    NumAppelation = Convert.ToInt32(row["numappelation"]),
-        //                    NumFournisseur = Convert.ToInt32(row["numfournisseur"])
-        //                });
-        //            }
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(new Demande
+                {
+                    NumDemande = Convert.ToInt32(row["numdemande"]),
+                    NumVin = Convert.ToInt32(row["numvin"]),
+                    NumEmploye = Convert.ToInt32(row["numemploye"]),
+                    NumCommande = Convert.ToInt32(row["numcommande"]),
+                    NumClient = Convert.ToInt32(row["numclient"]),
+                    DateDemande = Convert.ToDateTime(row["datedemande"]),
+                    QuantiteDemande = Convert.ToInt32(row["quantitedemande"]),
+                    Accepter = row["accepter"].ToString()
+                });
+            }
 
-        //            return list;
-        //        }
+            return list;
+        }
     }
 }
