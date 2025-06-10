@@ -1,0 +1,33 @@
+﻿<Window x:Name="windowAjouter" x:Class="SAE201.AjouterVin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SAE201"
+        mc:Ignorable="d"
+        Title="AjouterVin" Height="550" Width="720" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid>
+        <Rectangle HorizontalAlignment="Center" Height="435" VerticalAlignment="Top" Width="720" Fill="#FFFFDFDF" Margin="0,99,0,0"/>
+        <Rectangle HorizontalAlignment="Center" Height="99" VerticalAlignment="Top" Width="720" Fill="#FFE5AEAE"/>
+        <Label Content="Ajout d'un vin" HorizontalAlignment="Left" Height="72" Margin="198,14,0,0" VerticalAlignment="Top" Width="350" FontSize="48" FontWeight="Bold"/>
+        <StackPanel Margin="0,100,0,0" HorizontalAlignment="Center">
+            <Label Content="Numéro fournisseur"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+            <Label Content="Numéro du type de vin"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+            <Label Content="Numéro de l'appelation"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+            <Label Content="Nom du vin"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+            <Label Content="Prix du vin"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+            <Label Content="Descriptif"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="221" Height="57"/>
+            <Label Content="Millesime"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+
+        </StackPanel>
+        <Button x:Name="butValider" Content="Valider" HorizontalAlignment="Center" Margin="0,469,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

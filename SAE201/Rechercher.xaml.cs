@@ -39,5 +39,11 @@ namespace SAE201
         {
 
         }
+
+        private void butAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            AjouterVin ajouter = new AjouterVin();
+            ajouter.ShowDialog();
+        }
     }
 }
