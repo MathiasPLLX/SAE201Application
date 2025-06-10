@@ -16,7 +16,7 @@ namespace SAE201
 
         private void menu_ajouter_Click(object sender, RoutedEventArgs e)
         {
-            var ajouter = new Ajouter(this)
+            var ajouter = new MenuDemande(this)
             {
                 Left = this.Left,
                 Top = this.Top,
@@ -89,14 +89,21 @@ namespace SAE201
                 Width = this.Width,
                 Height = this.Height
             };
-
             refuserWindow.Show();
             this.Hide();
         }
 
         private void menuDemande_Click(object sender, RoutedEventArgs e)
         {
-
+            MenuDemande fenetreMenuDemande = new MenuDemande(this)
+            {
+                Left = this.Left,
+                Top = this.Top,
+                Width = this.Width,
+                Height = this.Height
+            };
+            fenetreMenuDemande.Show();
+            this.Hide();
         }
     }
 }

@@ -5,10 +5,10 @@ namespace SAE201
     /// <summary>
     /// Logique d'interaction pour Ajouter.xaml
     /// </summary>
-    public partial class Ajouter : Window
+    public partial class MenuDemande : Window
     {
         private readonly MainWindow mainwindow_ajouter;
-        public Ajouter(MainWindow mainwindow)
+        public MenuDemande(MainWindow mainwindow)
         {
             InitializeComponent();
             mainwindow_ajouter = mainwindow;

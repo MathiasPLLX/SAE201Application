@@ -1,4 +1,4 @@
-﻿<Window x:Name="windowAjouter" x:Class="SAE201.Ajouter"
+﻿<Window x:Name="windowAjouter" x:Class="SAE201.MenuDemande"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
     <Grid>
         <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
         <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
-        <Label Content="Ajouter une demande de vin" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="650" FontSize="48" FontWeight="Bold"/>
+        <Label Content="Menu Commande" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="414" FontSize="48" FontWeight="Bold"/>
         <Button x:Name="butQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butQuitter_Click"/>
         <Button x:Name="butAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butAccueil_Click"/>
         <Button x:Name="butCreerFicheClient" Content="Créer fiche client" HorizontalAlignment="Left" Margin="1039,256,0,0" VerticalAlignment="Top" Width="200" FontSize="20" BorderBrush="Black" Background="#FFEEACAC" Height="48" Click="butCreerFicheClient_Click"/>
