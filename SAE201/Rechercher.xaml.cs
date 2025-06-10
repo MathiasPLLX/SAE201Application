@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SAE201.ClassesVues;
+using System.Windows;
 
 namespace SAE201
 {
@@ -13,6 +14,7 @@ namespace SAE201
         {
             InitializeComponent();
             mainwindow_rechercher = mainwindow;
+            this.DataContext = new VinsTableau();
         }
 
         private void butAccueil_Click(object sender, RoutedEventArgs e)
