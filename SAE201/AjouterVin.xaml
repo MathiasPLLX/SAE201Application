@@ -11,23 +11,22 @@
         <Rectangle HorizontalAlignment="Center" Height="99" VerticalAlignment="Top" Width="720" Fill="#FFE5AEAE"/>
         <Label Content="Ajout d'un vin" HorizontalAlignment="Left" Height="72" Margin="198,14,0,0" VerticalAlignment="Top" Width="350" FontSize="48" FontWeight="Bold"/>
         <StackPanel Margin="0,100,0,0" HorizontalAlignment="Center">
-            <Label Content="Numéro fournisseur"/>
-            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
-            <Label Content="Numéro du type de vin"/>
-            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
-            <Label Content="Numéro de l'appelation"/>
-            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
-            <Label Content="Nom du vin"/>
-            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+            <Label Content="Numéro fournisseur *"/>
+            <TextBox x:Name="txtNumFournisseur" TextWrapping="Wrap" Text="" Width="120"/>
+            <Label Content="Numéro du type de vin *"/>
+            <TextBox x:Name="txtNumType" TextWrapping="Wrap" Text="" Width="120"/>
+            <Label Content="Numéro de l'appelation *"/>
+            <TextBox x:Name="txtNumAppelation" TextWrapping="Wrap" Text="" Width="120"/>
+            <Label Content="Nom du vin *"/>
+            <TextBox x:Name="txtNomVin" TextWrapping="Wrap" Text="" Width="120"/>
             <Label Content="Prix du vin"/>
-            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+            <TextBox x:Name="txtPrixVin" TextWrapping="Wrap" Text="" Width="120"/>
             <Label Content="Descriptif"/>
-            <TextBox TextWrapping="Wrap" Text="" Width="221" Height="57"/>
+            <TextBox x:Name="txtDescriptif" TextWrapping="Wrap" Text="" Width="221" Height="57"/>
             <Label Content="Millesime"/>
-            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
-
+            <TextBox x:Name="txtMillesime" TextWrapping="Wrap" Text="" Width="120"/>
         </StackPanel>
-        <Button x:Name="butValider" Content="Valider" HorizontalAlignment="Center" Margin="0,469,0,0" VerticalAlignment="Top"/>
-
+        <Button x:Name="butValider" Content="Valider" HorizontalAlignment="Left" Margin="360,469,0,0" VerticalAlignment="Top" Click="butValider_Click"/>
+        <Button x:Name="butAnnuler" Content="Annuler" HorizontalAlignment="Left" Margin="310,469,0,0" VerticalAlignment="Top" Click="butAnnuler_Click"/>
     </Grid>
 </Window>
