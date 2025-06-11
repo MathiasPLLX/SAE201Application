@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using SAE201.ClassesVues;
 using SAE201.Model;
 using System;
 using System.Collections.Generic;
@@ -124,7 +125,6 @@ namespace SAE201
                 if (numeroVinCree > 0)
                 {
                     MessageBox.Show($"Le vin a été ajouté avec succès ! Numéro : {numeroVinCree}", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-
                     ViderChamps();
                 }
                 else
