@@ -278,12 +278,5 @@ namespace SAE201.Model
         }
     }
 
-    // Classe auxiliaire pour DetailCommande si elle n'existe pas déjà
-    public class DetailCommande
-    {
-        public int NumCommande { get; set; }
-        public int NumVin { get; set; }
-        public int? Quantite { get; set; }
-        public decimal? Prix { get; set; }
-    }
+
 }
