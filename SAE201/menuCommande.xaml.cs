@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SAE201.ClassesVues;
+using System.Windows;
 
 namespace SAE201
 {
@@ -12,6 +13,7 @@ namespace SAE201
         {
             InitializeComponent();
             mainwindow_refuser = mainwindow;
+            DataContext = new CommandeTableau();
         }
 
         private void Button_Click_Quitter(object sender, RoutedEventArgs e)

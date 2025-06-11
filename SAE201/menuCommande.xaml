@@ -12,7 +12,7 @@
         <Button Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_Quitter"/>
         <Button Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_Accueil"/>
         <Label Content="Menu commande" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="404" FontSize="48" FontWeight="Bold"/>
-        <DataGrid x:Name="dgEtatCommande" Margin="61,171,300,39" AutoGenerateColumns="False" ItemsSource="{Binding Commande}">
+        <DataGrid x:Name="dgEtatCommande" Margin="61,171,300,39" AutoGenerateColumns="False" ItemsSource="{Binding Commandes}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Numéro de commande" Width="*" Binding="{Binding NumCommande}"/>
                 <DataGridTextColumn Header="Date de commande" Width="*" Binding="{Binding DateCommande}"/>

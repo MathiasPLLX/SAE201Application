@@ -19,7 +19,7 @@ namespace SAE201.ClassesVues
 
             set
             {
-                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(0, value, "NumCommande ne peut être ni négatif ni 0.");
+                //ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(0, value, "NumCommande ne peut être ni négatif ni 0.");
                 if (this.numCommande != value)
                 {
                     this.numCommande = value;
@@ -37,7 +37,7 @@ namespace SAE201.ClassesVues
 
             set
             {
-                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(0, value, "QuantiteCommande ne peut être ni négatif ni 0.");
+                //ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(0, value, "QuantiteCommande ne peut être ni négatif ni 0.");
                 if (this.quantiteCommande != value)
                 {
                     this.quantiteCommande = value;
@@ -55,7 +55,7 @@ namespace SAE201.ClassesVues
 
             set
             {
-                ArgumentNullException.ThrowIfNull(value, "DateCommande ne peut être null.");
+                //ArgumentNullException.ThrowIfNull(value, "DateCommande ne peut être null.");
                 if (this.dateCommande != value)
                 {
                     this.dateCommande = value;
@@ -73,7 +73,7 @@ namespace SAE201.ClassesVues
 
             set
             {
-                ArgumentNullException.ThrowIfNull(value, "CommandeValidee ne peut être null.");
+                //ArgumentNullException.ThrowIfNull(value, "CommandeValidee ne peut être null.");
                 if (this.commandeValidee != value)
                 {
                     this.commandeValidee = value;
@@ -91,7 +91,7 @@ namespace SAE201.ClassesVues
 
             set
             {
-                ArgumentOutOfRangeException.ThrowIfLessThan(0, value,"Prix impossible");
+                //ArgumentOutOfRangeException.ThrowIfLessThan(0, value,"Prix impossible");
                 if (this.prixTotalCommande != value)
                 {
                     this.prixTotalCommande = value;
@@ -109,7 +109,7 @@ namespace SAE201.ClassesVues
 
             set
             {
-                ArgumentException.ThrowIfNullOrWhiteSpace(value, "NomVin ne peut être null.");
+                //ArgumentException.ThrowIfNullOrWhiteSpace(value, "NomVin ne peut être null.");
                 if (this.nomVin != value)
                 {
                     this.nomVin = value;
