@@ -2,7 +2,7 @@
 
 namespace SAE201.ClassesVues
 {
-    internal class CommandeAffichage : INotifyPropertyChanged
+    public class CommandeAffichage : INotifyPropertyChanged
     {
         private int numCommande, quantiteCommande;
         private DateTime dateCommande;
