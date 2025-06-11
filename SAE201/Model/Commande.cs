@@ -5,263 +5,285 @@ namespace SAE201.Model
 {
     public class Commande : ICrud<Commande>
     {
-        private int numCommande;
-        private int numEmploye;
-        private DateTime dateCommande;
-        private bool valider;
-        private decimal prixTotal;
+        public int NumCommande { get; set; }
+        public int NumEmploye { get; set; }
+        public DateTime? DateCommande { get; set; }
+        public bool? Valider { get; set; }
+        public decimal? PrixTotal { get; set; }
 
-        // Constructeur par défaut
-        public Commande()
-        {
-        }
+        // Propriétés pour l'affichage dans le DataGrid
+        public string CommandeValidee => Valider.HasValue ? (Valider.Value ? "Oui" : "Non") : "Non défini";
+        public int? QuantiteCommande { get; set; }
+        public decimal? PrixTotalCommande => PrixTotal;
+        public string NomVin { get; set; }
 
-        // Constructeur avec ID seulement
+        // Objets liés
+        public Employe Employe { get; set; }
+        public List<DetailCommande> DetailsCommandes { get; set; } = new List<DetailCommande>();
+
+        // Constructeurs
+        public Commande() { }
+
         public Commande(int numCommande)
         {
-            this.NumCommande = numCommande;
+            NumCommande = numCommande;
         }
 
-        // Constructeur sans ID (pour création)
         public Commande(int numEmploye, DateTime dateCommande, bool valider, decimal prixTotal)
         {
-            this.NumEmploye = numEmploye;
-            this.DateCommande = dateCommande;
-            this.Valider = valider;
-            this.PrixTotal = prixTotal;
+            NumEmploye = numEmploye;
+            DateCommande = dateCommande;
+            Valider = valider;
+            PrixTotal = prixTotal;
         }
 
-        // Constructeur complet avec ID
         public Commande(int numCommande, int numEmploye, DateTime dateCommande, bool valider, decimal prixTotal)
         {
-            this.NumCommande = numCommande;
-            this.NumEmploye = numEmploye;
-            this.DateCommande = dateCommande;
-            this.Valider = valider;
-            this.PrixTotal = prixTotal;
-        }
-
-        public int NumCommande
-        {
-            get
-            {
-                return this.numCommande;
-            }
-            set
-            {
-                this.numCommande = value;
-            }
-        }
-
-        public int NumEmploye
-        {
-            get
-            {
-                return this.numEmploye;
-            }
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentOutOfRangeException("Le numéro d'employé doit être supérieur à 0");
-                }
-                this.numEmploye = value;
-            }
-        }
-
-        public DateTime DateCommande
-        {
-            get
-            {
-                return this.dateCommande;
-            }
-            set
-            {
-                this.dateCommande = value;
-            }
-        }
-
-        public bool Valider
-        {
-            get
-            {
-                return this.valider;
-            }
-            set
-            {
-                this.valider = value;
-            }
-        }
-
-        public decimal PrixTotal
-        {
-            get
-            {
-                return this.prixTotal;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("Le prix total ne peut pas être négatif");
-                }
-                this.prixTotal = value;
-            }
+            NumCommande = numCommande;
+            NumEmploye = numEmploye;
+            DateCommande = dateCommande;
+            Valider = valider;
+            PrixTotal = prixTotal;
         }
 
         public int Create()
         {
-            int nb = 0;
-            using (var cmdInsert = new NpgsqlCommand("INSERT INTO COMMANDE (NUMEMPLOYE, DATECOMMANDE, VALIDER, PRIXTOTAL) VALUES (@numEmploye, @dateCommande, @valider, @prixTotal) RETURNING NUMCOMMANDE"))
-            {
-                cmdInsert.Parameters.AddWithValue("numEmploye", this.NumEmploye);
-                cmdInsert.Parameters.AddWithValue("dateCommande", this.DateCommande);
-                cmdInsert.Parameters.AddWithValue("valider", this.Valider);
-                cmdInsert.Parameters.AddWithValue("prixTotal", this.PrixTotal);
-                nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
-            }
-            this.NumCommande = nb;
-            return nb;
+            var cmd = new NpgsqlCommand(@"INSERT INTO COMMANDE (NUMEMPLOYE, DATECOMMANDE, VALIDER, PRIXTOTAL) 
+                                         VALUES (@numEmploye, @dateCommande, @valider, @prixTotal) 
+                                         RETURNING NUMCOMMANDE;");
+
+            cmd.Parameters.AddWithValue("@numEmploye", NumEmploye);
+            cmd.Parameters.AddWithValue("@dateCommande", DateCommande ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@valider", Valider ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@prixTotal", PrixTotal ?? (object)DBNull.Value);
+
+            return NumCommande = DataAccess.Instance.ExecuteInsert(cmd);
         }
 
         public void Read()
         {
-            using (var cmdSelect = new NpgsqlCommand("SELECT * FROM COMMANDE WHERE NUMCOMMANDE = @numCommande"))
+            var cmd = new NpgsqlCommand("SELECT * FROM COMMANDE WHERE NUMCOMMANDE = @id;");
+            cmd.Parameters.AddWithValue("@id", NumCommande);
+            var table = DataAccess.Instance.ExecuteSelect(cmd);
+
+            if (table.Rows.Count > 0)
             {
-                cmdSelect.Parameters.AddWithValue("numCommande", this.NumCommande);
-                
-                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
-                if (dt.Rows.Count > 0)
+                var row = table.Rows[0];
+                NumEmploye = Convert.ToInt32(row["NUMEMPLOYE"]);
+                DateCommande = row["DATECOMMANDE"] == DBNull.Value ? null : Convert.ToDateTime(row["DATECOMMANDE"]);
+                Valider = row["VALIDER"] == DBNull.Value ? null : Convert.ToBoolean(row["VALIDER"]);
+                PrixTotal = row["PRIXTOTAL"] == DBNull.Value ? null : Convert.ToDecimal(row["PRIXTOTAL"]);
+
+                LoadRelatedObjects();
+            }
+        }
+
+        private void LoadRelatedObjects()
+        {
+            // Charger l'employé
+            if (NumEmploye > 0)
+            {
+                Employe = new Employe { NumEmploye = NumEmploye };
+                var cmdEmploye = new NpgsqlCommand("SELECT * FROM EMPLOYE WHERE NUMEMPLOYE = @id;");
+                cmdEmploye.Parameters.AddWithValue("@id", NumEmploye);
+                var tableEmploye = DataAccess.Instance.ExecuteSelect(cmdEmploye);
+
+                if (tableEmploye.Rows.Count > 0)
                 {
-                    this.NumEmploye = Convert.ToInt32(dt.Rows[0]["NUMEMPLOYE"]);
-                    this.DateCommande = Convert.ToDateTime(dt.Rows[0]["DATECOMMANDE"]);
-                    this.Valider = Convert.ToBoolean(dt.Rows[0]["VALIDER"]);
-                    this.PrixTotal = Convert.ToDecimal(dt.Rows[0]["PRIXTOTAL"]);
+                    var row = tableEmploye.Rows[0];
+                    Employe.Nom = row["NOM"]?.ToString();
+                    Employe.Prenom = row["PRENOM"]?.ToString();
+                    Employe.Login = row["LOGIN"]?.ToString();
+                    Employe.NumRole = Convert.ToInt32(row["NUMROLE"]);
                 }
             }
+
+            // Charger les détails de commande
+            LoadDetailsCommande();
+        }
+
+        private void LoadDetailsCommande()
+        {
+            var cmd = new NpgsqlCommand(@"SELECT dc.*, v.NOMVIN 
+                                         FROM DETAILCOMMANDE dc 
+                                         JOIN VIN v ON dc.NUMVIN = v.NUMVIN 
+                                         WHERE dc.NUMCOMMANDE = @id;");
+            cmd.Parameters.AddWithValue("@id", NumCommande);
+            var table = DataAccess.Instance.ExecuteSelect(cmd);
+
+            DetailsCommandes.Clear();
+            int totalQuantite = 0;
+
+            foreach (DataRow row in table.Rows)
+            {
+                var detail = new DetailCommande
+                {
+                    NumCommande = Convert.ToInt32(row["NUMCOMMANDE"]),
+                    NumVin = Convert.ToInt32(row["NUMVIN"]),
+                    Quantite = row["QUANTITE"] == DBNull.Value ? null : Convert.ToInt32(row["QUANTITE"]),
+                    Prix = row["PRIX"] == DBNull.Value ? null : Convert.ToDecimal(row["PRIX"])
+                };
+
+                DetailsCommandes.Add(detail);
+
+                if (detail.Quantite.HasValue)
+                    totalQuantite += detail.Quantite.Value;
+
+                // Pour l'affichage, on prend le premier vin (ou on peut concaténer tous les vins)
+                if (string.IsNullOrEmpty(NomVin))
+                    NomVin = row["NOMVIN"]?.ToString();
+            }
+
+            QuantiteCommande = totalQuantite > 0 ? totalQuantite : null;
         }
 
         public int Update()
         {
-            using (var cmdUpdate = new NpgsqlCommand("UPDATE COMMANDE SET NUMEMPLOYE = @numEmploye, DATECOMMANDE = @dateCommande, VALIDER = @valider, PRIXTOTAL = @prixTotal WHERE NUMCOMMANDE = @numCommande"))
-            {
-                cmdUpdate.Parameters.AddWithValue("numEmploye", this.NumEmploye);
-                cmdUpdate.Parameters.AddWithValue("dateCommande", this.DateCommande);
-                cmdUpdate.Parameters.AddWithValue("valider", this.Valider);
-                cmdUpdate.Parameters.AddWithValue("prixTotal", this.PrixTotal);
-                cmdUpdate.Parameters.AddWithValue("numCommande", this.NumCommande);
-                return DataAccess.Instance.ExecuteSet(cmdUpdate);
-            }
+            var cmd = new NpgsqlCommand(@"UPDATE COMMANDE 
+                                         SET NUMEMPLOYE = @numEmploye, DATECOMMANDE = @dateCommande, 
+                                             VALIDER = @valider, PRIXTOTAL = @prixTotal 
+                                         WHERE NUMCOMMANDE = @id;");
+
+            cmd.Parameters.AddWithValue("@numEmploye", NumEmploye);
+            cmd.Parameters.AddWithValue("@dateCommande", DateCommande ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@valider", Valider ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@prixTotal", PrixTotal ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@id", NumCommande);
+
+            return DataAccess.Instance.ExecuteSet(cmd);
         }
 
         public int Delete()
         {
-            using (var cmdDelete = new NpgsqlCommand("DELETE FROM COMMANDE WHERE NUMCOMMANDE = @numCommande"))
-            {
-                cmdDelete.Parameters.AddWithValue("numCommande", this.NumCommande);
-                return DataAccess.Instance.ExecuteSet(cmdDelete);
-            }
+            var cmd = new NpgsqlCommand("DELETE FROM COMMANDE WHERE NUMCOMMANDE = @id;");
+            cmd.Parameters.AddWithValue("@id", NumCommande);
+            return DataAccess.Instance.ExecuteSet(cmd);
         }
 
         public List<Commande> FindAll()
         {
-            List<Commande> lesCommandes = new List<Commande>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("SELECT * FROM COMMANDE ORDER BY NUMCOMMANDE"))
-            {
-                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
-                foreach (DataRow dr in dt.Rows)
-                {
-                    lesCommandes.Add(new Commande(
-                        Convert.ToInt32(dr["NUMCOMMANDE"]),
-                        Convert.ToInt32(dr["NUMEMPLOYE"]),
-                        Convert.ToDateTime(dr["DATECOMMANDE"]),
-                        Convert.ToBoolean(dr["VALIDER"]),
-                        Convert.ToDecimal(dr["PRIXTOTAL"])
-                    ));
-                }
-            }
-            return lesCommandes;
+            var cmd = new NpgsqlCommand(@"SELECT c.*, 
+                                               e.NOM as NomEmploye, e.PRENOM as PrenomEmploye,
+                                               SUM(dc.QUANTITE) as TotalQuantite,
+                                               STRING_AGG(v.NOMVIN, ', ') as NomsVins
+                                        FROM COMMANDE c
+                                        LEFT JOIN EMPLOYE e ON c.NUMEMPLOYE = e.NUMEMPLOYE
+                                        LEFT JOIN DETAILCOMMANDE dc ON c.NUMCOMMANDE = dc.NUMCOMMANDE
+                                        LEFT JOIN VIN v ON dc.NUMVIN = v.NUMVIN
+                                        GROUP BY c.NUMCOMMANDE, c.NUMEMPLOYE, c.DATECOMMANDE, c.VALIDER, c.PRIXTOTAL,
+                                                 e.NOM, e.PRENOM
+                                        ORDER BY c.NUMCOMMANDE;");
+
+            var table = DataAccess.Instance.ExecuteSelect(cmd);
+            return ConvertToList(table);
         }
 
         public List<Commande> FindBySelection(string criteres)
         {
-            List<Commande> lesCommandes = new List<Commande>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand($"SELECT * FROM COMMANDE WHERE {criteres} ORDER BY NUMCOMMANDE"))
-            {
-                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
-                foreach (DataRow dr in dt.Rows)
-                {
-                    lesCommandes.Add(new Commande(
-                        Convert.ToInt32(dr["NUMCOMMANDE"]),
-                        Convert.ToInt32(dr["NUMEMPLOYE"]),
-                        Convert.ToDateTime(dr["DATECOMMANDE"]),
-                        Convert.ToBoolean(dr["VALIDER"]),
-                        Convert.ToDecimal(dr["PRIXTOTAL"])
-                    ));
-                }
-            }
-            return lesCommandes;
+            var cmd = new NpgsqlCommand(@"SELECT c.*, 
+                                               e.NOM as NomEmploye, e.PRENOM as PrenomEmploye,
+                                               SUM(dc.QUANTITE) as TotalQuantite,
+                                               STRING_AGG(v.NOMVIN, ', ') as NomsVins
+                                        FROM COMMANDE c
+                                        LEFT JOIN EMPLOYE e ON c.NUMEMPLOYE = e.NUMEMPLOYE
+                                        LEFT JOIN DETAILCOMMANDE dc ON c.NUMCOMMANDE = dc.NUMCOMMANDE
+                                        LEFT JOIN VIN v ON dc.NUMVIN = v.NUMVIN
+                                        WHERE " + criteres + @"
+                                        GROUP BY c.NUMCOMMANDE, c.NUMEMPLOYE, c.DATECOMMANDE, c.VALIDER, c.PRIXTOTAL,
+                                                 e.NOM, e.PRENOM
+                                        ORDER BY c.NUMCOMMANDE;");
+
+            var table = DataAccess.Instance.ExecuteSelect(cmd);
+            return ConvertToList(table);
         }
 
-        // Méthodes utilitaires supplémentaires
+        private List<Commande> ConvertToList(DataTable table)
+        {
+            var list = new List<Commande>();
 
-        /// <summary>
-        /// Trouve toutes les commandes d'un employé spécifique
-        /// </summary>
-        /// <param name="numEmploye">Numéro de l'employé</param>
-        /// <returns>Liste des commandes de l'employé</returns>
+            foreach (DataRow row in table.Rows)
+            {
+                var commande = new Commande
+                {
+                    NumCommande = Convert.ToInt32(row["NUMCOMMANDE"]),
+                    NumEmploye = Convert.ToInt32(row["NUMEMPLOYE"]),
+                    DateCommande = row["DATECOMMANDE"] == DBNull.Value ? null : Convert.ToDateTime(row["DATECOMMANDE"]),
+                    Valider = row["VALIDER"] == DBNull.Value ? null : Convert.ToBoolean(row["VALIDER"]),
+                    PrixTotal = row["PRIXTOTAL"] == DBNull.Value ? null : Convert.ToDecimal(row["PRIXTOTAL"])
+                };
+
+                // Données agrégées pour l'affichage
+                if (table.Columns.Contains("TotalQuantite"))
+                {
+                    commande.QuantiteCommande = row["TotalQuantite"] == DBNull.Value ? null : Convert.ToInt32(row["TotalQuantite"]);
+                }
+
+                if (table.Columns.Contains("NomsVins"))
+                {
+                    commande.NomVin = row["NomsVins"]?.ToString();
+                }
+
+                // Informations sur l'employé
+                if (table.Columns.Contains("NomEmploye"))
+                {
+                    commande.Employe = new Employe
+                    {
+                        NumEmploye = commande.NumEmploye,
+                        Nom = row["NomEmploye"]?.ToString(),
+                        Prenom = row["PrenomEmploye"]?.ToString()
+                    };
+                }
+
+                list.Add(commande);
+            }
+
+            return list;
+        }
+
+        // Méthodes utilitaires
         public List<Commande> FindByEmploye(int numEmploye)
         {
-            return FindBySelection($"NUMEMPLOYE = {numEmploye}");
+            return FindBySelection($"c.NUMEMPLOYE = {numEmploye}");
         }
 
-        /// <summary>
-        /// Trouve toutes les commandes validées
-        /// </summary>
-        /// <returns>Liste des commandes validées</returns>
         public List<Commande> FindValidated()
         {
-            return FindBySelection("VALIDER = true");
+            return FindBySelection("c.VALIDER = true");
         }
 
-        /// <summary>
-        /// Trouve toutes les commandes non validées
-        /// </summary>
-        /// <returns>Liste des commandes non validées</returns>
         public List<Commande> FindNotValidated()
         {
-            return FindBySelection("VALIDER = false");
+            return FindBySelection("c.VALIDER = false");
         }
 
-        /// <summary>
-        /// Trouve les commandes dans une plage de dates
-        /// </summary>
-        /// <param name="dateDebut">Date de début</param>
-        /// <param name="dateFin">Date de fin</param>
-        /// <returns>Liste des commandes dans la plage</returns>
         public List<Commande> FindByDateRange(DateTime dateDebut, DateTime dateFin)
         {
-            return FindBySelection($"DATECOMMANDE BETWEEN '{dateDebut:yyyy-MM-dd}' AND '{dateFin:yyyy-MM-dd}'");
+            return FindBySelection($"c.DATECOMMANDE BETWEEN '{dateDebut:yyyy-MM-dd}' AND '{dateFin:yyyy-MM-dd}'");
         }
 
         public override bool Equals(object? obj)
         {
-            return obj is Commande commande &&
-                   this.NumCommande == commande.NumCommande &&
-                   this.NumEmploye == commande.NumEmploye &&
-                   this.DateCommande == commande.DateCommande &&
-                   this.Valider == commande.Valider &&
-                   this.PrixTotal == commande.PrixTotal;
+            return obj is Commande commande && NumCommande == commande.NumCommande;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(NumCommande, NumEmploye, DateCommande, Valider, PrixTotal);
+            return HashCode.Combine(NumCommande);
         }
 
         public override string ToString()
         {
-            return $"Commande #{NumCommande} - Employé: {NumEmploye}, Date: {DateCommande:dd/MM/yyyy}, Validée: {(Valider ? "Oui" : "Non")}, Prix total: {PrixTotal:C}";
+            string validationStatus = Valider.HasValue ? (Valider.Value ? "Validée" : "Non validée") : "Statut non défini";
+            return $"Commande #{NumCommande} - Date: {DateCommande?.ToString("dd/MM/yyyy") ?? "Non définie"}, {validationStatus}, Prix: {PrixTotal?.ToString("C") ?? "Non défini"}";
         }
+    }
+
+    // Classe auxiliaire pour DetailCommande si elle n'existe pas déjà
+    public class DetailCommande
+    {
+        public int NumCommande { get; set; }
+        public int NumVin { get; set; }
+        public int? Quantite { get; set; }
+        public decimal? Prix { get; set; }
     }
 }
