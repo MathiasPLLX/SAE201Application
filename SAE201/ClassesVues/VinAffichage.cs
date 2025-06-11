@@ -10,6 +10,10 @@ namespace SAE201.ClassesVues
         private string nomType;
         private decimal prixVin;
         private int millesime;
+        private int numFournisseur;
+        private int numType;
+        private int numAppelation;
+        private string descriptif;
 
         public int NumVin
         {
@@ -112,6 +116,70 @@ namespace SAE201.ClassesVues
         protected void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public int NumFournisseur
+        {
+            get
+            {
+                return this.numFournisseur;
+            }
+            set
+            {
+                if (this.numFournisseur != value)
+                {
+                    this.numFournisseur = value;
+                    OnPropertyChanged(nameof(NumFournisseur));
+                }
+            }
+        }
+
+        public int NumType
+        {
+            get
+            {
+                return this.numType;
+            }
+            set
+            {
+                if (this.numType != value)
+                {
+                    this.numType = value;
+                    OnPropertyChanged(nameof(NumType));
+                }
+            }
+        }
+
+        public int NumAppelation
+        {
+            get
+            {
+                return this.numAppelation;
+            }
+            set
+            {
+                if (this.numAppelation != value)
+                {
+                    this.numAppelation = value;
+                    OnPropertyChanged(nameof(NumAppelation));
+                }
+            }
+        }
+
+        public string Descriptif
+        {
+            get
+            {
+                return this.descriptif;
+            }
+            set
+            {
+                if (this.descriptif != value)
+                {
+                    this.descriptif = value;
+                    OnPropertyChanged(nameof(Descriptif));
+                }
+            }
         }
     }
 }

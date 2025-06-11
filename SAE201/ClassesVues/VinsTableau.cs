@@ -27,7 +27,11 @@ namespace SAE201.ClassesVues
                     NomAppelation = vin.Appelation?.NomAppelation,
                     NomType = vin.TypeVin?.NomType,
                     PrixVin = vin.PrixVin ?? 0,
-                    Millesime = vin.Millesime ?? 0
+                    Millesime = vin.Millesime ?? 0,
+                    NumAppelation = vin.Appelation?.NumAppelation ?? 0,
+                    NumType = vin.TypeVin?.NumType ?? 0,
+                    NumFournisseur = vin.NumFournisseur,
+                    Descriptif = vin.Descriptif
                 });
             }
 

@@ -93,5 +93,64 @@ namespace SAE201
             }
         }
 
+        private void butModifier_Click(object sender, RoutedEventArgs e)
+        {
+            var vinSelectionne = (VinAffichage)dgVins.SelectedItem;
+
+            if (vinSelectionne == null)
+            {
+                MessageBox.Show(this, "Veuillez sélectionner un vin à modifier.", "Attention", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            VinAffichage copie = new VinAffichage
+            {
+                NumVin = vinSelectionne.NumVin,
+                NomVin = vinSelectionne.NomVin,
+                PrixVin = vinSelectionne.PrixVin,
+                Descriptif = vinSelectionne.Descriptif,
+                Millesime = vinSelectionne.Millesime,
+                NumType = vinSelectionne.NumType,
+                NumAppelation = vinSelectionne.NumAppelation,
+                NumFournisseur = vinSelectionne.NumFournisseur
+            };
+
+            ModifierVin modifier = new ModifierVin(copie);
+
+            if (modifier.ShowDialog() == true)
+            {
+                try
+                {
+                    Vin vinBdd = new Vin
+                    {
+                        NumVin = copie.NumVin,
+                        NomVin = copie.NomVin,
+                        PrixVin = copie.PrixVin,
+                        Descriptif = copie.Descriptif,
+                        Millesime = copie.Millesime,
+                        NumFournisseur = copie.NumFournisseur,
+                        NumType = copie.NumType,
+                        NumAppelation = copie.NumAppelation
+                    };
+
+                    vinBdd.Update();
+
+                    // Mise à jour des données du datagrid
+                    vinSelectionne.NomVin = copie.NomVin;
+                    vinSelectionne.PrixVin = copie.PrixVin;
+                    vinSelectionne.Descriptif = copie.Descriptif;
+                    vinSelectionne.Millesime = copie.Millesime;
+                    vinSelectionne.NumType = copie.NumType;
+                    vinSelectionne.NumAppelation = copie.NumAppelation;
+                    vinSelectionne.NumFournisseur = copie.NumFournisseur;
+
+                    //dgVins.Items.Refresh();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de la mise à jour : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
     }
 }
