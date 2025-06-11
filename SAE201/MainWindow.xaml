@@ -29,7 +29,7 @@
                 <DataGridTextColumn Header="Numéro de vin" Width="*" Binding="{Binding NumVin}"/>
                 <DataGridTextColumn Header="Numéro d'employé" Width="*" Binding="{Binding NumEmploye}"/>
                 <DataGridTextColumn Header="Numéro de commande" Width="*" Binding="{Binding NumCommande}"/>
-                <DataGridTextColumn Header="NUméro de client" Width="*" Binding="{Binding NumClient}"/>
+                <DataGridTextColumn Header="Numéro de client" Width="*" Binding="{Binding NumClient}"/>
                 <DataGridTextColumn Header="Date de demande" Width="*" Binding="{Binding DateDemande}"/>
                 <DataGridTextColumn Header="Quantité de demande" Width="*" Binding="{Binding QuantiteDemande}"/>
                 <DataGridTextColumn Header="Etat de la demande" Width="*" Binding="{Binding Accepter}"/>
