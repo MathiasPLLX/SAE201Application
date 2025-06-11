@@ -19,6 +19,9 @@ namespace SAE201
             mainwindow_rechercher = mainwindow;
             tableau = new VinsTableau();
             this.DataContext = tableau;
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tableau.Vins);
+            view.Filter = filtrerVin;
         }
 
         private void butAccueil_Click(object sender, RoutedEventArgs e)
@@ -143,14 +146,34 @@ namespace SAE201
                     vinSelectionne.NumType = copie.NumType;
                     vinSelectionne.NumAppelation = copie.NumAppelation;
                     vinSelectionne.NumFournisseur = copie.NumFournisseur;
-
-                    //dgVins.Items.Refresh();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erreur lors de la mise à jour : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private bool filtrerVin(object obj)
+        {
+            if (string.IsNullOrWhiteSpace(textRechercher.Text))
+                return true;
+
+            var vin = obj as VinAffichage; //si obj ne peut pas être converti en instance de VinAffichage, vin = null
+            if (vin == null) return false;
+
+            string filtre = textRechercher.Text.ToLower();
+
+            return vin.NomVin.ToLower().Contains(filtre)
+                || vin.Descriptif?.ToLower().Contains(filtre) == true
+                || vin.Millesime.ToString().Contains(filtre)
+                || vin.NomAppelation?.ToLower().Contains(filtre) == true
+                || vin.NomType?.ToLower().Contains(filtre) == true; //obligé de mettre des "== true" sur les nullables sinon ça marche pas
+        }
+
+        private void textRechercher_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(tableau.Vins).Refresh();
         }
     }
 }

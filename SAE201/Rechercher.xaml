@@ -23,7 +23,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="butFiltre" Content="&#xE71C;" HorizontalAlignment="Left" Margin="1086,246,0,0" VerticalAlignment="Top" Height="50" Width="50" Click="butFiltre_Click" Background="White" FontFamily="Segoe MDL2 Assets"/>
-        <TextBox x:Name="textRechercher" HorizontalAlignment="Left" Height="31" Margin="986,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="253"/>
+        <TextBox x:Name="textRechercher" HorizontalAlignment="Left" Height="31" Margin="986,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253" TextChanged="textRechercher_TextChanged" FontSize="16" VerticalContentAlignment="Center"/>
         <Button x:Name="butActualiser" Content="Actualiser" HorizontalAlignment="Left" Margin="1017,617,0,0" VerticalAlignment="Top" Height="18" Width="222" Click="butActualiser_Click"/>
         <Button x:Name="butAjouter" Content="&#xE948;" HorizontalAlignment="Left" Margin="1086,341,0,0" VerticalAlignment="Top" Width="50" Height="50" Background="White" FontFamily="Segoe MDL2 Assets" Click="butAjouter_Click"/>
         <Button x:Name="butSupprimer" Content="&#xE74D;" HorizontalAlignment="Left" Margin="1086,438,0,0" VerticalAlignment="Top" Width="50" Height="50" Background="White" FontFamily="Segoe MDL2 Assets" Click="butSupprimer_Click"/>
