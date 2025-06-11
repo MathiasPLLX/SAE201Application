@@ -1,6 +1,6 @@
 ﻿using Npgsql;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SAE201
 {
@@ -20,6 +20,11 @@ namespace SAE201
         }
 
         private void butConnecter_Click(object sender, RoutedEventArgs e)
+        {
+            logiqueConnexion();
+        }
+
+        private void logiqueConnexion()
         {
             // Vérifier que les champs ne sont pas vides
             if (string.IsNullOrWhiteSpace(TextBoxIdentifiant.Text) ||
@@ -90,36 +95,55 @@ namespace SAE201
                 return false;
             }
         }
+
+        private void PasswordBoxMotDePasse_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                logiqueConnexion();
+            }
+        }
+
+        private void TextBoxIdentifiant_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                // Si l'utilisateur appuie sur Entrée dans le champ identifiant, déplacer le focus vers le mot de passe
+                PasswordBoxMotDePasse.Focus();
+            }
+        }
+
+
     }
 
-        public static class StockageIdentifiant
+    public static class StockageIdentifiant
+    {
+        private static string identifiantStocke;
+        private static string mdpStocke;
+        public static string IdentifiantStocke
         {
-            private static string identifiantStocke;
-            private static string mdpStocke;
-            public static string IdentifiantStocke
+            get
             {
-                get
-                {
-                    return identifiantStocke;
-                }
-
-                set
-                {
-                    identifiantStocke = value;
-                }
+                return identifiantStocke;
             }
 
-            public static string MdpStocke
+            set
             {
-                get
-                {
-                    return mdpStocke;
-                }
-
-                set
-                {
-                    mdpStocke = value;
-                }
+                identifiantStocke = value;
             }
+        }
+
+        public static string MdpStocke
+        {
+            get
+            {
+                return mdpStocke;
+            }
+
+            set
+            {
+                mdpStocke = value;
+            }
+        }
     }
 }
