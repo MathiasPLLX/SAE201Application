@@ -11,17 +11,17 @@
         <Rectangle HorizontalAlignment="Center" Height="99" VerticalAlignment="Top" Width="720" Fill="#FFE5AEAE"/>
         <Label Content="Filtre" HorizontalAlignment="Center" Height="72" Margin="0,14,0,0" VerticalAlignment="Top" Width="124" FontSize="48" FontWeight="Bold"/>
 
-        <CheckBox x:Name="checkBox_blanc" Content="Blanc" HorizontalAlignment="Left" Margin="65,248,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <CheckBox x:Name="checkBox_rose" Content="Rosé" HorizontalAlignment="Left" Margin="65,315,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <CheckBox x:Name="checkBox_rouge" Content="Rouge" HorizontalAlignment="Left" Margin="65,383,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="lab_type_vin" Content="Type de vin" HorizontalAlignment="Left" Margin="65,154,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
-        <CheckBox x:Name="checkBox_bourgogne" Content="Bourgogne" HorizontalAlignment="Left" Margin="290,248,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <CheckBox x:Name="checkBox_bordeaux" Content="Bordeaux" HorizontalAlignment="Left" Margin="290,315,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <CheckBox x:Name="checkBox_italien" Content="Italien" HorizontalAlignment="Left" Margin="290,383,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="lab_type_appellation_vin" Content="Appellation du vin" HorizontalAlignment="Center" Margin="0,154,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
-        <Label x:Name="lab_annee_vin" Content="Année du vin" HorizontalAlignment="Left" Margin="514,154,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
+        <CheckBox x:Name="checkBox_blanc" Content="Blanc" HorizontalAlignment="Left" Margin="117,248,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_rose" Content="Rosé" HorizontalAlignment="Left" Margin="117,315,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_rouge" Content="Rouge" HorizontalAlignment="Left" Margin="117,383,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="lab_type_vin" Content="Type de vin" HorizontalAlignment="Left" Margin="117,154,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
+        <CheckBox x:Name="checkBox_bourgogne" Content="Bourgogne" HorizontalAlignment="Left" Margin="457,248,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_bordeaux" Content="Bordeaux" HorizontalAlignment="Left" Margin="456,293,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_alsace" Content="Alsace" HorizontalAlignment="Left" Margin="457,337,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_sancerre" Content="Sancerre" HorizontalAlignment="Left" Margin="459,380,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <CheckBox x:Name="checkBox_coterhone" Content="Côte du Rhone" HorizontalAlignment="Left" Margin="459,422,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="lab_type_appellation_vin" Content="Appellation du vin" HorizontalAlignment="Left" Margin="417,154,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
         <Button x:Name="butAppliquer" Content="Appliquer" HorizontalAlignment="Left" Height="43" Margin="445,493,0,0" VerticalAlignment="Top" Width="180" Background="#FFEEACAC" FontSize="20" Click="butAppliquer_Click"/>
         <Button x:Name="butAnnuler" Content="Annuler" HorizontalAlignment="Left" Height="43" Margin="95,493,0,0" VerticalAlignment="Top" Width="180" Background="#FFEEACAC" FontSize="20" Click="butAnnuler_Click"/>
-        <TextBox x:Name="textBox_annee" HorizontalAlignment="Left" Margin="514,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25"/>
     </Grid>
 </Window>
