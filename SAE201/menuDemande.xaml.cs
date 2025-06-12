@@ -33,9 +33,8 @@ namespace SAE201
             if (DataContext is DemandesTableau tableau && tableau.SelectedDemande != null)
             {
                 var demandeAffichage = tableau.SelectedDemande;
-                demandeAffichage.Accepter = "Non"; // Mise à jour UI
+                demandeAffichage.Accepter = "Non";
 
-                // Mise à jour base
                 var demandeModel = new Demande
                 {
                     NumDemande = demandeAffichage.NumDemande,

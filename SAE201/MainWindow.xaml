@@ -23,7 +23,7 @@
         <Image Margin="443,22,443,572" Source="/Image/Nicolas_logo.png" Stretch="Fill"/>
         <Button x:Name="butQuitterMainWindow" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="ButtonQuitterMainWindow_Click"/>
         <Button x:Name="but_deconnecter" Content="Se déconnecter" HorizontalAlignment="Left" Margin="869,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="but_deconnecter_Click"/>
-        <DataGrid x:Name="dgEtatDemande" Margin="85,171,85,39" AutoGenerateColumns="False" ItemsSource="{Binding Demandes}" Background="#FFFFDFDF" CanUserAddRows="False" BorderBrush="#FFFFDFDF">
+        <DataGrid x:Name="dgEtatDemande" Margin="85,171,85,39" AutoGenerateColumns="False" ItemsSource="{Binding Demandes}" Background="#FFFFDFDF" CanUserAddRows="False" BorderBrush="#FFFFDFDF" CellEditEnding="dgEtatDemande_CellEditEnding">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Numéro de demande" Width="*" Binding="{Binding NumDemande}"/>
                 <DataGridTextColumn Header="Numéro de vin" Width="*" Binding="{Binding NumVin}"/>

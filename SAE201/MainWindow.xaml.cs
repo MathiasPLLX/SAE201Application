@@ -1,5 +1,6 @@
 ﻿using SAE201.ClassesVues;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SAE201
 {
@@ -108,6 +109,23 @@ namespace SAE201
             };
             fenetreMenuDemande.Show();
             this.Hide();
+        }
+
+        private void dgEtatDemande_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (dgEtatDemande.SelectedItem != null)
+            {
+                var demandeSelectionnee = dgEtatDemande.SelectedItem;
+
+                var fenetreDetails = new commanderDemande(demandeSelectionnee)
+                {
+                    Owner = this,
+                    Left = this.Left + 100,
+                    Top = this.Top + 100
+                };
+
+                fenetreDetails.ShowDialog();
+            }
         }
     }
 }
