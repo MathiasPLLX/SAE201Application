@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201"
         mc:Ignorable="d"
-        Title="Menu de Gestion des Commandes" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+        Title="Menu de Gestion des Commandes" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
         <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
