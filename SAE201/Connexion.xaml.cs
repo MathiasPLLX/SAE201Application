@@ -66,7 +66,7 @@ namespace SAE201
 
         private bool TesterConnexionBDD(string identifiant, string motDePasse)
         {
-            string connectionString = $"Host=localhost;Port=5432;Username={identifiant};Password={motDePasse};Database=SAE201BDD;Options='-c search_path=temporaire'";
+            string connectionString = $"Host=localhost;Port=5432;Username={identifiant};Password={motDePasse};Database=SAE201BDD;Options='-c search_path=production'";
 
             try
             {
