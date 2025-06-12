@@ -24,7 +24,7 @@ namespace SAE201.Model
 
         public int Create()
         {
-            var cmd = new NpgsqlCommand("INSERT INTO DEMANDE(numdemande, numvin, numeploye, numcommande, numclient, datedemande, quantitedemande, accepter) VALUES (@numdemande, @numvin, @numemploye, @numcommande, @numclient, @datedemande, @quantitedemande, @accepter) RETURNING numdemande;");
+            var cmd = new NpgsqlCommand("INSERT INTO DEMANDE(numdemande, numvin, numemploye, numcommande, numclient, datedemande, quantitedemande, accepter) VALUES (@numdemande, @numvin, @numemploye, @numcommande, @numclient, @datedemande, @quantitedemande, @accepter) RETURNING numdemande;");
             cmd.Parameters.AddWithValue("@numdemande", NumDemande);
             cmd.Parameters.AddWithValue("@numvin", NumVin);
             cmd.Parameters.AddWithValue("@numemploye", NumEmploye);
