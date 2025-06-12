@@ -1,5 +1,7 @@
 ﻿using SAE201.ClassesVues;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Data;
 
 namespace SAE201
 {
@@ -44,6 +46,19 @@ namespace SAE201
                 fenetreDetail.Owner = this;
                 fenetreDetail.ShowDialog();
             }
+        }
+
+    }
+    public class BoolToOuiNonConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (value is bool b && b) ? "Oui" : "Non";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (value is string s && s.Equals("Oui", StringComparison.OrdinalIgnoreCase));
         }
     }
 }
