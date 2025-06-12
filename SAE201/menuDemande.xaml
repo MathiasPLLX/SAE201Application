@@ -16,7 +16,7 @@
           Margin="61,171,272,39"
           AutoGenerateColumns="False"
           ItemsSource="{Binding Demandes}"
-          SelectedItem="{Binding SelectedDemande, Mode=TwoWay}" Background="#FFFFDFDF">
+          SelectedItem="{Binding SelectedDemande, Mode=TwoWay}" Background="#FFFFDFDF" BorderBrush="#FFFFDFDF">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Numéro de demande" Width="*" Binding="{Binding NumDemande}"/>
                 <DataGridTextColumn Header="Numéro de vin" Width="*" Binding="{Binding NumVin}"/>
