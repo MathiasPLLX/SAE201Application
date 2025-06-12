@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SAE201.ClassesVues;
+using System.Windows;
 
 namespace SAE201
 {
@@ -12,6 +13,7 @@ namespace SAE201
             InitializeComponent();
             var connexion = new Connexion();
             connexion.ShowDialog();
+            this.DataContext = new DemandesTableau();
         }
 
         private void menu_ajouter_Click(object sender, RoutedEventArgs e)

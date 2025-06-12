@@ -14,12 +14,12 @@
         <Label Content="Menu commande" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="404" FontSize="48" FontWeight="Bold"/>
         <DataGrid x:Name="dgEtatCommande" Margin="61,171,300,39" AutoGenerateColumns="False" ItemsSource="{Binding Commandes}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Numéro de commande" Width="*" Binding="{Binding NumCommande}"/>
-                <DataGridTextColumn Header="Date de commande" Width="*" Binding="{Binding DateCommande}"/>
-                <DataGridTextColumn Header="Commande Validée ?" Width="*" Binding="{Binding CommandeValidee}"/>
-                <DataGridTextColumn Header="Quantité commande" Width="*" Binding="{Binding QuantiteCommande}"/>
-                <DataGridTextColumn Header="Prix total commande" Width="*" Binding="{Binding PrixTotalCommande}"/>
-                <DataGridTextColumn Header="Nom vin commandé" Width="*" Binding="{Binding NomVin}"/>
+                <DataGridTextColumn Header="Numéro de commande" Width="*" Binding="{Binding NumCommande}" CanUserResize="False"/>
+                <DataGridTextColumn Header="Date de commande" Width="*" Binding="{Binding DateCommande}" CanUserResize="False"/>
+                <DataGridTextColumn Header="Validée ?" Width="50" Binding="{Binding CommandeValidee}" CanUserResize="False"/>
+                <DataGridTextColumn Header="Qte" Width="60" Binding="{Binding QuantiteCommande}" CanUserResize="False"/>
+                <DataGridTextColumn Header="Prix total commande" Width="*" Binding="{Binding PrixTotalCommande}" CanUserResize="False"/>
+                <DataGridTextColumn Header="Nom vin commandé" Width="*" Binding="{Binding NomVin}" CanUserResize="False"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
