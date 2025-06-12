@@ -78,8 +78,21 @@ namespace SAE201.ClassesVues
                 {
                     this.commandeValidee = value;
                     OnPropertyChanged(nameof(CommandeValidee));
+                    UpdateDatabase();
                 }
             }
+        }
+
+        private void UpdateDatabase()
+        {
+            try
+            {
+                var commandeModel = new Model.Commande(NumCommande);
+                commandeModel.Read();
+                commandeModel.Valider = CommandeValidee;
+                commandeModel.Update();
+            }
+            catch (Exception) { /* Gérer l'erreur */ }
         }
 
         public double PrixTotalCommande

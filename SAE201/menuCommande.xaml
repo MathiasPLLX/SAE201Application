@@ -29,15 +29,11 @@
         <Button Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_Quitter"/>
         <Button Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_Accueil"/>
         <Label Content="Menu commande" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="404" FontSize="48" FontWeight="Bold"/>
-        <DataGrid x:Name="dgEtatCommande" Margin="56,171,56,39" AutoGenerateColumns="False" ItemsSource="{Binding Commandes}" MouseDoubleClick="dgEtatCommande_MouseDoubleClick">
+        <DataGrid x:Name="dgEtatCommande" Margin="56,171,56,39" AutoGenerateColumns="False" ItemsSource="{Binding Commandes}" MouseDoubleClick="dgEtatCommande_MouseDoubleClick" CellEditEnding="dgEtatCommande_CellEditEnding">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Numéro de commande" Width="*" Binding="{Binding NumCommande}" CanUserResize="False" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Date de commande" Width="*" Binding="{Binding DateCommande}" CanUserResize="False" IsReadOnly="True"/>
-                <DataGridComboBoxColumn Header="Validée ?"
-                        Width="70"
-                        CanUserResize="False"
-                        SelectedItemBinding="{Binding CommandeValidee, Converter={StaticResource BoolToOuiNonConverter}, Mode=TwoWay}"
-                        ItemsSource="{StaticResource OuiNonListe}" />
+                <DataGridComboBoxColumn Header="Validée ?" Width="70" CanUserResize="False" SelectedItemBinding="{Binding CommandeValidee, Converter={StaticResource BoolToOuiNonConverter}, Mode=TwoWay}" ItemsSource="{StaticResource OuiNonListe}" />
                 <DataGridTextColumn Header="Qte" Width="60" Binding="{Binding QuantiteCommande}" CanUserResize="False" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Prix total commande" Width="*" Binding="{Binding PrixTotalCommande}" CanUserResize="False" IsReadOnly="True"/>
             </DataGrid.Columns>

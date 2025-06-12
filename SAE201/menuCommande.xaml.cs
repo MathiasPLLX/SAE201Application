@@ -1,6 +1,7 @@
 ﻿using SAE201.ClassesVues;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace SAE201
@@ -48,6 +49,44 @@ namespace SAE201
             }
         }
 
+        private void dgEtatCommande_CellEditEnding(object sender, System.Windows.Controls.DataGridCellEditEndingEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "Validée ?")
+            {
+                // On récupère l'objet CommandeAffichage sélectionné
+                if (e.Row.Item is CommandeAffichage commande)
+                {
+                    try
+                    {
+                        // Récupérer la valeur "Oui"/"Non" depuis le ComboBox
+                        var comboBox = e.EditingElement as ComboBox;
+                        string nouvelleValeur = comboBox.SelectedItem.ToString();
+
+                        // Convertir "Oui"/"Non" en bool
+                        bool estValide = (nouvelleValeur == "Oui");
+
+                        // Mettre à jour la base de données
+                        var commandeModel = new Model.Commande(commande.NumCommande);
+                        commandeModel.Read();  // Charge les données actuelles
+                        commandeModel.Valider = estValide; // Modifie la valeur
+                        commandeModel.Update(); // Sauvegarde en base de données
+
+                        // Option: Actualiser la vue après mise à jour
+                        RefreshDataGrid();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de la mise à jour : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+        }
+
+        private void RefreshDataGrid()
+        {
+            // Recharger les données
+            DataContext = new CommandeTableau();
+        }
     }
     public class BoolToOuiNonConverter : IValueConverter
     {
