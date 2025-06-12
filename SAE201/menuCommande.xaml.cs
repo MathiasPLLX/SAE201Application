@@ -34,5 +34,16 @@ namespace SAE201
         {
 
         }
+
+        private void dgEtatCommande_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (dgEtatCommande.SelectedItem is CommandeAffichage commandeAffichage)
+            {
+                // Ouvre une fenêtre de détail (à créer) avec les vins et quantités de la commande
+                var fenetreDetail = new DetailCommandeWindow(commandeAffichage.NumCommande);
+                fenetreDetail.Owner = this;
+                fenetreDetail.ShowDialog();
+            }
+        }
     }
 }

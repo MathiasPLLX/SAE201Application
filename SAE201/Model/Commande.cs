@@ -112,7 +112,6 @@ namespace SAE201.Model
             var table = DataAccess.Instance.ExecuteSelect(cmd);
 
             DetailsCommandes.Clear();
-            int totalQuantite = 0;
 
             foreach (DataRow row in table.Rows)
             {
@@ -121,20 +120,16 @@ namespace SAE201.Model
                     NumCommande = Convert.ToInt32(row["NUMCOMMANDE"]),
                     NumVin = Convert.ToInt32(row["NUMVIN"]),
                     Quantite = row["QUANTITE"] == DBNull.Value ? null : Convert.ToInt32(row["QUANTITE"]),
-                    Prix = row["PRIX"] == DBNull.Value ? null : Convert.ToDecimal(row["PRIX"])
+                    Prix = row["PRIX"] == DBNull.Value ? null : Convert.ToDecimal(row["PRIX"]),
+                    Vin = new Vin
+                    {
+                        NumVin = Convert.ToInt32(row["NUMVIN"]),
+                        NomVin = row["NOMVIN"].ToString()
+                    }
                 };
 
                 DetailsCommandes.Add(detail);
-
-                if (detail.Quantite.HasValue)
-                    totalQuantite += detail.Quantite.Value;
-
-                // Pour l'affichage, on prend le premier vin (ou on peut concaténer tous les vins)
-                if (string.IsNullOrEmpty(NomVin))
-                    NomVin = row["NOMVIN"]?.ToString();
             }
-
-            QuantiteCommande = totalQuantite > 0 ? totalQuantite : null;
         }
 
         public int Update()
