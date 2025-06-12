@@ -12,9 +12,9 @@
         <Image Margin="443,11,443,583" Source="/Image/Nicolas_logo.png" Stretch="Fill"/>
         <Label Content="Connexion" HorizontalAlignment="Center" Height="72" Margin="0,137,0,0" VerticalAlignment="Top" Width="250" FontSize="48" FontWeight="Bold"/>
         <Label x:Name="lab_identifiant" Content="Identifiant" HorizontalAlignment="Center" Margin="0,278,0,0" VerticalAlignment="Top" FontSize="24" Width="280"/>
-        <TextBox x:Name="TextBoxIdentifiant" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" Height="25" Margin="0,325,0,0" KeyDown="TextBoxIdentifiant_KeyDown"/>
+        <TextBox x:Name="TextBoxIdentifiant" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" Height="25" Margin="0,325,0,0" FontSize="17" KeyDown="TextBoxIdentifiant_KeyDown"/>
         <Label x:Name="lab_mdp" Content="Mot de passe" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" FontSize="24" Width="280"/>
-        <PasswordBox x:Name="PasswordBoxMotDePasse" PasswordChar="*" Margin="0,423,0,0" FontSize="14" MaxLength="30" Height="25" Width="280" HorizontalAlignment="Center" VerticalAlignment="Top" KeyDown="PasswordBoxMotDePasse_KeyDown" />
+        <PasswordBox x:Name="PasswordBoxMotDePasse" PasswordChar="*" Margin="0,423,0,0" FontSize="17" MaxLength="30" Height="25" Width="280" HorizontalAlignment="Center" VerticalAlignment="Top" KeyDown="PasswordBoxMotDePasse_KeyDown" />
         <Button x:Name="butConnecter" Content="Se connecter" HorizontalAlignment="Center" Margin="0,496,0,0" VerticalAlignment="Top" Width="130" FontSize="20" BorderBrush="Black" Background="#FFEEACAC" Click="butConnecter_Click">
         </Button>
         <Button Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butQuitter_Click"/>

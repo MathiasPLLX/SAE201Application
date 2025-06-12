@@ -35,17 +35,6 @@ namespace SAE201
             Application.Current.Shutdown();
         }
 
-        private void butFiltre_Click(object sender, RoutedEventArgs e)
-        {
-            Filtre filtre = new Filtre();
-            filtre.ShowDialog();
-        }
-
-        private void filtrerDataGrid(string textRecherche)
-        {
-
-        }
-
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
             AjouterVin ajouter = new AjouterVin();
