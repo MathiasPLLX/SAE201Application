@@ -111,7 +111,7 @@ namespace SAE201
             this.Hide();
         }
 
-        private void dgEtatDemande_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        private void dgEtatDemande_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (dgEtatDemande.SelectedItem != null)
             {
