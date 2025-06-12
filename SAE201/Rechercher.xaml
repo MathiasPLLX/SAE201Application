@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201"
         mc:Ignorable="d"
-        Title="Rechercher" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Gestion vins" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
         <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
         <Button x:Name="butQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butQuitter_Click"/>
         <Button x:Name="butAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butAccueil_Click"/>
-        <Label Content="Rechercher" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="260" FontSize="48" FontWeight="Bold"/>
+        <Label Content="Menu de gestion des vins" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="588" FontSize="48" FontWeight="Bold"/>
         <DataGrid x:Name="dgVins" Margin="141,171,329,39" Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding Vins}" Background="#FFFFDFDF" BorderBrush="#FFFFDFDF">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Numéro" Width="*" Binding="{Binding NumVin}"/>
