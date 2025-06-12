@@ -58,7 +58,7 @@ namespace SAE201.Model
 
         public int Update()
         {
-            var cmd = new NpgsqlCommand("UPDATE DEMANDE SET numvin = @numvin, numemploye = @numemploye, numcommande = @numcommande, numclient = @numclient, datedemande = @datedemande, quantitedemande = @quantitedemande, accetper = @accepter WHERE numdemande = @numdemande;");
+            var cmd = new NpgsqlCommand("UPDATE DEMANDE SET numvin = @numvin, numemploye = @numemploye, numcommande = @numcommande, numclient = @numclient, datedemande = @datedemande, quantitedemande = @quantitedemande, accepter = @accepter WHERE numdemande = @numdemande;");
             cmd.Parameters.AddWithValue("@numdemande", NumDemande);
             cmd.Parameters.AddWithValue("@numvin", NumVin);
             cmd.Parameters.AddWithValue("@numemploye", NumEmploye);

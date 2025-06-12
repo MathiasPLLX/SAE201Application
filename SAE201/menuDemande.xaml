@@ -12,8 +12,22 @@
         <Label Content="Menu Demande" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="414" FontSize="48" FontWeight="Bold"/>
         <Button x:Name="butQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butQuitter_Click"/>
         <Button x:Name="butAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butAccueil_Click"/>
-        <Button x:Name="butCreerFicheClient" Content="Créer fiche client" HorizontalAlignment="Left" Margin="1039,256,0,0" VerticalAlignment="Top" Width="200" FontSize="20" BorderBrush="Black" Background="#FFEEACAC" Height="48" Click="butCreerFicheClient_Click"/>
-        <Button x:Name="butModifierFicheClient" Content="Modifier fiche client" HorizontalAlignment="Left" Margin="1039,487,0,0" VerticalAlignment="Top" Width="200" FontSize="20" BorderBrush="Black" Background="#FFEEACAC" Height="50" Click="butModifierFicheClient_Click"/>
-
+        <DataGrid x:Name="dgEtatDemande"
+          Margin="61,171,272,39"
+          AutoGenerateColumns="False"
+          ItemsSource="{Binding Demandes}"
+          SelectedItem="{Binding SelectedDemande, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Numéro de demande" Width="*" Binding="{Binding NumDemande}"/>
+                <DataGridTextColumn Header="Numéro de vin" Width="*" Binding="{Binding NumVin}"/>
+                <DataGridTextColumn Header="Numéro d'employé" Width="*" Binding="{Binding NumEmploye}"/>
+                <DataGridTextColumn Header="Numéro de commande" Width="*" Binding="{Binding NumCommande}"/>
+                <DataGridTextColumn Header="Numéro de client" Width="*" Binding="{Binding NumClient}"/>
+                <DataGridTextColumn Header="Date de demande" Width="*" Binding="{Binding DateDemande}"/>
+                <DataGridTextColumn Header="Quantité de demande" Width="*" Binding="{Binding QuantiteDemande}"/>
+                <DataGridTextColumn Header="Etat de la demande" Width="*" Binding="{Binding Accepter}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="butRefuser" Content="Refuser" HorizontalAlignment="Left" Margin="1079,403,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFE5AEAE" Click="butRefuser_Click"/>
     </Grid>
 </Window>

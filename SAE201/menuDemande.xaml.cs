@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using SAE201.ClassesVues;
+using SAE201.Model;
+using System.Windows;
 
 namespace SAE201
 {
@@ -12,6 +14,7 @@ namespace SAE201
         {
             InitializeComponent();
             mainwindow_ajouter = mainwindow;
+            this.DataContext = new DemandesTableau();
         }
 
         private void butAccueil_Click(object sender, RoutedEventArgs e)
@@ -25,16 +28,41 @@ namespace SAE201
             Application.Current.Shutdown();
         }
 
-        private void butCreerFicheClient_Click(object sender, RoutedEventArgs e)
+        private void butRefuser_Click(object sender, RoutedEventArgs e)
         {
-            Creer_Fiche_Client creer_fiche_client = new Creer_Fiche_Client();
-            creer_fiche_client.ShowDialog();
+            if (DataContext is DemandesTableau tableau && tableau.SelectedDemande != null)
+            {
+                var demandeAffichage = tableau.SelectedDemande;
+                demandeAffichage.Accepter = "Non"; // Mise à jour UI
+
+                // Mise à jour base
+                var demandeModel = new Demande
+                {
+                    NumDemande = demandeAffichage.NumDemande,
+                    NumVin = demandeAffichage.NumVin,
+                    NumEmploye = demandeAffichage.NumEmploye,
+                    NumCommande = demandeAffichage.NumCommande,
+                    NumClient = demandeAffichage.NumClient,
+                    DateDemande = demandeAffichage.DateDemande,
+                    QuantiteDemande = demandeAffichage.QuantiteDemande,
+                    Accepter = "Non"
+                };
+
+                int result = demandeModel.Update();
+                if (result > 0)
+                {
+                    MessageBox.Show("Demande refusée avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Erreur lors de la mise à jour en base.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une demande.", "Aucune sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
-        private void butModifierFicheClient_Click(object sender, RoutedEventArgs e)
-        {
-            Modifier_Fiche_Client modifier_fiche_client = new Modifier_Fiche_Client();
-            modifier_fiche_client.ShowDialog();
-        }
     }
 }
