@@ -164,5 +164,18 @@ namespace SAE201
         {
             CollectionViewSource.GetDefaultView(tableau.Vins).Refresh();
         }
+
+        private void butAjouterDemande_Click(object sender, RoutedEventArgs e)
+        {
+            var vinSelectionne = dgVins.SelectedItem as VinAffichage;
+            if (vinSelectionne == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un vin.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            AjouterDemandeVin fenetre = new AjouterDemandeVin(vinSelectionne.NumVin);
+            fenetre.ShowDialog();
+        }
     }
 }
