@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201"
         mc:Ignorable="d"
-        Title="Connexion" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Connexion" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid Background="#FFFFDFDF">
         <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
-        <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
         <Image Margin="443,11,443,583" Source="/Image/Nicolas_logo.png" Stretch="Fill"/>
         <Label Content="Connexion" HorizontalAlignment="Center" Height="72" Margin="0,137,0,0" VerticalAlignment="Top" Width="250" FontSize="48" FontWeight="Bold"/>
         <Label x:Name="lab_identifiant" Content="Identifiant" HorizontalAlignment="Center" Margin="0,278,0,0" VerticalAlignment="Top" FontSize="24" Width="280"/>

@@ -120,6 +120,7 @@ namespace SAE201
     {
         private static string identifiantStocke;
         private static string mdpStocke;
+        private static string roleStocke;
         public static string IdentifiantStocke
         {
             get
@@ -143,6 +144,19 @@ namespace SAE201
             set
             {
                 mdpStocke = value;
+            }
+        }
+
+        public static string RoleStocke
+        {
+            get
+            {
+                return roleStocke;
+            }
+
+            set
+            {
+                roleStocke = value;
             }
         }
     }
