@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Détail de la commande" Height="400" Width="600">
     <Grid Background="#FFFFDFDF">
-        <DataGrid x:Name="dgDetails" AutoGenerateColumns="False" Margin="10" Background="#FFFFDFDF" BorderBrush="#FFFFDFDF">
+        <DataGrid x:Name="dgDetails" AutoGenerateColumns="False" Margin="10" Background="#FFFFDFDF" BorderBrush="#FFFFDFDF" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom du vin" Binding="{Binding Vin.NomVin}" Width="*"/>
                 <DataGridTextColumn Header="Quantité" Binding="{Binding Quantite}" Width="*"/>

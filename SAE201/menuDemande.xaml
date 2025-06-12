@@ -12,11 +12,11 @@
         <Label Content="Menu Demande" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="414" FontSize="48" FontWeight="Bold"/>
         <Button x:Name="butQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butQuitter_Click"/>
         <Button x:Name="butAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butAccueil_Click"/>
-        <DataGrid x:Name="dgEtatDemande"
+        <DataGrid x:Name="dgEtatDemande" CanUserAddRows="False"
           Margin="61,171,272,39"
           AutoGenerateColumns="False"
           ItemsSource="{Binding Demandes}"
-          SelectedItem="{Binding SelectedDemande, Mode=TwoWay}">
+          SelectedItem="{Binding SelectedDemande, Mode=TwoWay}" Background="#FFFFDFDF" BorderBrush="#FFFFDFDF">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Numéro de demande" Width="*" Binding="{Binding NumDemande}"/>
                 <DataGridTextColumn Header="Numéro de vin" Width="*" Binding="{Binding NumVin}"/>
