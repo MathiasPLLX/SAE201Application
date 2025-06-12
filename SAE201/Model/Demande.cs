@@ -24,8 +24,8 @@ namespace SAE201.Model
 
         public int Create()
         {
-            var cmd = new NpgsqlCommand("INSERT INTO DEMANDE(numdemande, numvin, numemploye, numcommande, numclient, datedemande, quantitedemande, accepter) VALUES (@numdemande, @numvin, @numemploye, @numcommande, @numclient, @datedemande, @quantitedemande, @accepter) RETURNING numdemande;");
-            cmd.Parameters.AddWithValue("@numdemande", NumDemande);
+            var cmd = new NpgsqlCommand("INSERT INTO DEMANDE(numvin, numemploye, numcommande, numclient, datedemande, quantitedemande, accepter) VALUES (@numvin, @numemploye, @numcommande, @numclient, @datedemande, @quantitedemande, @accepter) RETURNING numdemande;"); //laisse pgadmin gérer le serial de numdemande
+
             cmd.Parameters.AddWithValue("@numvin", NumVin);
             cmd.Parameters.AddWithValue("@numemploye", NumEmploye);
             cmd.Parameters.AddWithValue("@numcommande", NumCommande);
@@ -36,6 +36,7 @@ namespace SAE201.Model
 
             return NumDemande = DataAccess.Instance.ExecuteInsert(cmd);
         }
+
 
         public void Read()
         {

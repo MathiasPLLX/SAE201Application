@@ -35,7 +35,7 @@ namespace SAE201
                     QuantiteDemande = quantite,
                     DateDemande = DateTime.Now,
                     Accepter = "En attente",
-                    NumCommande = 0 // ou -1/null si non utilisé
+                    NumCommande = 1
                 };
 
                 demande.Create();
