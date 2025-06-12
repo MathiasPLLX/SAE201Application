@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Npgsql;
+using SAE201.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,11 @@ namespace SAE201
         private void butAnnuler_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void butCommander_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

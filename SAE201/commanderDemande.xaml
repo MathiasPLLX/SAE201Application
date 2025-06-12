@@ -1,8 +1,8 @@
 ﻿<Window x:Class="SAE201.commanderDemande"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Détails de la Demande" Height="450" Width="650" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FFFFDFDF" Margin="20">
+        Title="Détails de la Demande" Height="450" Width="650" WindowStartupLocation="CenterScreen" Background="#FFFFDFDF">
+    <Grid Background="#FFFFDFDF" Margin="20,28,20,12">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -47,7 +47,7 @@
 
         <!-- Boutons -->
         <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-            <Button Content="Commander" Width="130" Height="30" Margin="10" Background="#FFEEACAC"/>
+            <Button x:Name="butCommander" Content="Commander" Width="130" Height="30" Margin="10" Background="#FFEEACAC" Click="butCommander_Click"/>
             <Button Content="Annuler" Width="130" Height="30" Margin="10" Background="#FFEEACAC" Click="butAnnuler_Click"/>
         </StackPanel>
     </Grid>

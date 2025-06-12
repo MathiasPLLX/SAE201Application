@@ -10,6 +10,7 @@ namespace SAE201
     public partial class MenuDemande : Window
     {
         private readonly MainWindow mainwindow_ajouter;
+        private DemandesTableau tableau;
         public MenuDemande(MainWindow mainwindow)
         {
             InitializeComponent();
@@ -30,36 +31,35 @@ namespace SAE201
 
         private void butRefuser_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is DemandesTableau tableau && tableau.SelectedDemande != null)
+            var demandeSelectionne = (DemandeAffichage)dgEtatDemande.SelectedItem;
+
+            if (demandeSelectionne != null)
             {
-                var demandeAffichage = tableau.SelectedDemande;
-                demandeAffichage.Accepter = "Non";
+                var result = MessageBox.Show($"Voulez-vous vraiment refuser la demande \"{demandeSelectionne.NumDemande}\" ?",
+                                             "Confirmation de suppression",
+                                             MessageBoxButton.YesNo,
+                                             MessageBoxImage.Warning);
 
-                var demandeModel = new Demande
+                if (result == MessageBoxResult.Yes)
                 {
-                    NumDemande = demandeAffichage.NumDemande,
-                    NumVin = demandeAffichage.NumVin,
-                    NumEmploye = demandeAffichage.NumEmploye,
-                    NumCommande = demandeAffichage.NumCommande,
-                    NumClient = demandeAffichage.NumClient,
-                    DateDemande = demandeAffichage.DateDemande,
-                    QuantiteDemande = demandeAffichage.QuantiteDemande,
-                    Accepter = "Non"
-                };
+                    try
+                    {
+                        // Supprimer dans la base
+                        var demande = new Demande { NumDemande = demandeSelectionne.NumDemande };
+                        demande.Delete();
 
-                int result = demandeModel.Update();
-                if (result > 0)
-                {
-                    MessageBox.Show("Demande refusée avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Erreur lors de la mise à jour en base.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        // Supprimer de la liste ObservableCollection (mise à jour de l'affichage)
+                        tableau.Demandes.Remove(demandeSelectionne);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de la suppression : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner une demande.", "Aucune sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Veuillez sélectionner un vin à supprimer.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
