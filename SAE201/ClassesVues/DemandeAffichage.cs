@@ -16,6 +16,7 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "Le numéro de demande doit être supérieur à zéro.");
                 if (this.numDemande != value)
                 {
                     this.numDemande = value;
@@ -32,6 +33,7 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "Le numéro de demande doit être supérieur à zéro.");
                 if (this.numVin != value)
                 {
                     this.numVin = value;
@@ -48,6 +50,7 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "Le numéro de demande doit être supérieur à zéro.");
                 if (this.numEmploye != value)
                 {
                     this.numEmploye = value;
@@ -64,6 +67,7 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "Le numéro de demande doit être supérieur à zéro.");
                 if (this.numCommande != value)
                 {
                     this.numCommande = value;
@@ -80,6 +84,7 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "Le numéro de demande doit être supérieur à zéro.");
                 if (this.numClient != value)
                 {
                     this.numClient = value;
@@ -96,6 +101,10 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                if (value.Date < DateTime.Today)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "La date de demande ne peut pas être antérieure à aujourd'hui.");
+                }
                 if (this.dateDemande != value)
                 {
                     this.dateDemande = value;
@@ -112,6 +121,7 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "La quantité demandée doit être supérieure à zéro.");
                 if (this.quantiteDemande != value)
                 {
                     this.quantiteDemande = value;
