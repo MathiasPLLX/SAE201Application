@@ -32,80 +32,21 @@ namespace SAE201
 
         private void butRefuser_Click(object sender, RoutedEventArgs e)
         {
-            var demandeSelectionne = (DemandeAffichage)dgEtatDemande.SelectedItem;
-
-            if (demandeSelectionne != null)
+            DemandeAffichage demande = dgEtatDemande.SelectedItem as DemandeAffichage;
+            if (demande != null)
             {
-                var result = MessageBox.Show($"Voulez-vous vraiment refuser la demande \"{demandeSelectionne.NumDemande}\" ?",
-                                             "Confirmation de suppression",
-                                             MessageBoxButton.YesNo,
-                                             MessageBoxImage.Warning);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    try
-                    {
-                        // Supprimer dans la base
-                        var demande = new Demande { NumDemande = demandeSelectionne.NumDemande };
-                        demande.Delete();
-
-                        // Supprimer de la liste ObservableCollection (mise à jour de l'affichage)
-                        tableau.Demandes.Remove(demandeSelectionne);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erreur lors de la suppression : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Veuillez sélectionner un vin à supprimer.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                demande.Accepter = "Non";
+                dgEtatDemande.Items.Refresh(); // Rafraîchir l'affichage
             }
         }
 
         private void butValider_Click(object sender, RoutedEventArgs e)
         {
-            var demandeSelectionnee = (DemandeAffichage)dgEtatDemande.SelectedItem;
-
-            if (demandeSelectionnee == null)
+            DemandeAffichage demande = dgEtatDemande.SelectedItem as DemandeAffichage;
+            if (demande != null)
             {
-                MessageBox.Show("Veuillez sélectionner une demande à valider.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-
-            if (demandeSelectionnee.Accepter == "Oui")
-            {
-                MessageBox.Show("Cette demande est déjà validée.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-
-            try
-            {
-                // Requête SQL pour mettre à jour l'état de la demande
-                string sql = "UPDATE demande SET etatdemande = 'Oui' WHERE numdemande = @num";
-
-                using (var cmd = new NpgsqlCommand(sql))
-                {
-                    cmd.Parameters.AddWithValue("@num", demandeSelectionnee.NumDemande);
-                    int lignesAffectees = DataAccess.Instance.ExecuteSet(cmd);
-
-                    if (lignesAffectees > 0)
-                    {
-                        // Met à jour localement l’objet pour que le DataGrid reflète le changement
-                        demandeSelectionnee.Accepter = "Oui";
-
-                        MessageBox.Show($"Demande \"{demandeSelectionnee.NumDemande}\" validée avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Aucune ligne n’a été mise à jour. Vérifiez que la demande existe.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de la validation de la demande : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                demande.Accepter = "Oui";
+                dgEtatDemande.Items.Refresh(); // Rafraîchir l'affichage
             }
         }
 
