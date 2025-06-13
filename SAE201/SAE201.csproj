@@ -9,25 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Image\Bouteille_PNG.png" />
-    <None Remove="Image\Entoinnoir_logo.png" />
-    <None Remove="Image\Nicolas_logo.png" />
-    <None Remove="Image\Tableau_exemple.jpg" />
-    <None Remove="Image\Visualiser_vin_1.png" />
-    <None Remove="Image\Visualiser_vin_2.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Npgsql" Version="9.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Image\Bouteille_PNG.png" />
-    <Resource Include="Image\Entoinnoir_logo.png" />
-    <Resource Include="Image\Nicolas_logo.png" />
-    <Resource Include="Image\Tableau_exemple.jpg" />
-    <Resource Include="Image\Visualiser_vin_1.png" />
-    <Resource Include="Image\Visualiser_vin_2.png" />
   </ItemGroup>
 
 </Project>
