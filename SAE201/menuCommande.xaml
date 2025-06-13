@@ -18,17 +18,16 @@
             <sys:String>Oui</sys:String>
             <sys:String>Non</sys:String>
         </x:Array>
-
         <!-- Converter -->
         <local:BoolToOuiNonConverter x:Key="BoolToOuiNonConverter" />
-
     </Window.Resources>
     <Grid>
         <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
         <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
         <Button x:Name="butQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="Button_Click_Quitter"/>
-        <Button x:Name="butEnregistrerCommande" Content="Enregistrer une commande" HorizontalAlignment="Center" Margin="0,618,0,0" VerticalAlignment="Top" Width="244" FontSize="20" BorderBrush="Black" Background="#FFE5AEAE" Click="butEnregistrerCommande_Click" Height="35"/>
+
         <Label Content="Menu commande" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="404" FontSize="48" FontWeight="Bold"/>
+
         <DataGrid x:Name="dgEtatCommande" CanUserAddRows="False" Margin="56,171,56,179" AutoGenerateColumns="False" ItemsSource="{Binding Commandes}" MouseDoubleClick="dgEtatCommande_MouseDoubleClick" CellEditEnding="dgEtatCommande_CellEditEnding" Background="#FFFFDFDF" BorderBrush="#FFFFDFDF">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Numéro de commande" Width="*" Binding="{Binding NumCommande}" CanUserResize="False" IsReadOnly="True"/>
@@ -38,6 +37,11 @@
                 <DataGridTextColumn Header="Prix total commande" Width="*" Binding="{Binding PrixTotalCommande}" CanUserResize="False" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
+
         <Button x:Name="butAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butAccueil_Click"/>
+
+        <Button x:Name="butValiderCommande" Content="Valider" Height="35" FontSize="20" BorderBrush="Black" Background="#FFE5AEAE" Click="butValiderCommande_Click" Margin="328,580,773,89"/>
+        <Button x:Name="butMettreEnAttente" Content="Mettre en attente" Height="35" FontSize="20" BorderBrush="Black" Background="#FFE5AEAE" Click="butMettreEnAttente_Click" Margin="771,580,296,89"/>
+
     </Grid>
 </Window>

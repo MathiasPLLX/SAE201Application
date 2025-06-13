@@ -88,10 +88,66 @@ namespace SAE201
             DataContext = new CommandeTableau();
         }
 
-        private void butEnregistrerCommande_Click(object sender, RoutedEventArgs e)
+        // Nouveau bouton Valider
+        private void butValiderCommande_Click(object sender, RoutedEventArgs e)
         {
-            var enregistrer = new Enregistrer(mainwindow_menuCommande);
-            enregistrer.ShowDialog();
+            CommandeAffichage commandeSelectionnee = dgEtatCommande.SelectedItem as CommandeAffichage;
+            if (commandeSelectionnee != null)
+            {
+                try
+                {
+                    // Mettre à jour la base de données
+                    var commandeModel = new Model.Commande(commandeSelectionnee.NumCommande);
+                    commandeModel.Read();  // Charge les données actuelles
+                    commandeModel.Valider = true; // Met à true (validée)
+                    commandeModel.Update(); // Sauvegarde en base de données
+
+                    // Mettre à jour l'affichage local
+                    commandeSelectionnee.CommandeValidee = true;
+                    dgEtatCommande.Items.Refresh();
+
+                    MessageBox.Show("Commande validée avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erreur lors de la validation de la commande : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une commande à valider.", "Aucune sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        // Nouveau bouton Mettre en attente
+        private void butMettreEnAttente_Click(object sender, RoutedEventArgs e)
+        {
+            CommandeAffichage commandeSelectionnee = dgEtatCommande.SelectedItem as CommandeAffichage;
+            if (commandeSelectionnee != null)
+            {
+                try
+                {
+                    // Mettre à jour la base de données
+                    var commandeModel = new Model.Commande(commandeSelectionnee.NumCommande);
+                    commandeModel.Read();  // Charge les données actuelles
+                    commandeModel.Valider = false; // Met à false (en attente)
+                    commandeModel.Update(); // Sauvegarde en base de données
+
+                    // Mettre à jour l'affichage local
+                    commandeSelectionnee.CommandeValidee = false;
+                    dgEtatCommande.Items.Refresh();
+
+                    MessageBox.Show("Commande mise en attente avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erreur lors de la mise en attente de la commande : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une commande à mettre en attente.", "Aucune sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void butAccueil_Click(object sender, RoutedEventArgs e)
@@ -100,6 +156,7 @@ namespace SAE201
             this.Close();
         }
     }
+
     public class BoolToOuiNonConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
