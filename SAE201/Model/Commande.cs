@@ -16,13 +16,7 @@ namespace SAE201.Model
         private List<DetailCommande> detailsCommandes = new List<DetailCommande>();
 
         // Propriétés pour l'affichage dans le DataGrid
-        public string CommandeValidee
-        {
-            get
-            {
-                return Valider.HasValue ? (Valider.Value ? "Oui" : "Non") : "Non défini";
-            }
-        }
+
 
         public int? QuantiteCommande
         {
@@ -33,28 +27,11 @@ namespace SAE201.Model
 
             set
             {
+                if (value.HasValue && value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "La quantité de commande ne peut pas être négative.");
+                }
                 this.quantiteCommande = value;
-            }
-        }
-
-        public decimal? PrixTotalCommande
-        {
-            get
-            {
-                return this.PrixTotal;
-            }
-        }
-
-        public string NomVin
-        {
-            get
-            {
-                return this.nomVin;
-            }
-
-            set
-            {
-                this.nomVin = value;
             }
         }
 
@@ -68,6 +45,7 @@ namespace SAE201.Model
 
             set
             {
+                ArgumentNullException.ThrowIfNull(value,"Il ne peut pas n'y avoir aucun employé");
                 this.employe = value;
             }
         }
@@ -81,6 +59,7 @@ namespace SAE201.Model
 
             set
             {
+                ArgumentNullException.ThrowIfNull(value, "La liste des détails de commande ne peut pas être nulle.");
                 this.detailsCommandes = value;
             }
         }
@@ -94,6 +73,7 @@ namespace SAE201.Model
 
             set
             {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "Le numéro de commande doit être supérieur à zéro.");
                 this.numCommande = value;
             }
         }
@@ -107,6 +87,7 @@ namespace SAE201.Model
 
             set
             {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "Le numéro d'employé doit être supérieur à zéro.");
                 this.numEmploye = value;
             }
         }
@@ -120,6 +101,10 @@ namespace SAE201.Model
 
             set
             {
+                if (value.HasValue && value > DateTime.Today)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "La date de commande ne peut pas être postérieure à aujourd'hui.");
+                }
                 this.dateCommande = value;
             }
         }
@@ -146,10 +131,42 @@ namespace SAE201.Model
 
             set
             {
+                if (value.HasValue && value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Le prix total ne peut pas être négatif.");
+                }
                 this.prixTotal = value;
             }
         }
 
+        public string NomVin
+        {
+            get
+            {
+                return this.nomVin;
+            }
+
+            set
+            {
+                ArgumentNullException.ThrowIfNullOrWhiteSpace(value, "Le nom du vin ne peut pas être vide.");
+                this.nomVin = value;
+            }
+        }
+
+        public decimal? PrixTotalCommande
+        {
+            get
+            {
+                return this.PrixTotal;
+            }
+        }
+        public string CommandeValidee
+        {
+            get
+            {
+                return Valider.HasValue ? (Valider.Value ? "Oui" : "Non") : "Non défini";
+            }
+        }
         // Constructeurs
         public Commande() { }
 
