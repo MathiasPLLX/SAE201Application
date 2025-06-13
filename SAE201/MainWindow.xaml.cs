@@ -75,15 +75,24 @@ namespace SAE201
 
         private void menuGestionVin_Click(object sender, RoutedEventArgs e)
         {
-            var rechercher = new Rechercher(this)
+            if (StockageIdentifiant.RoleStockeByte == 2)
+                {
+                MessageBox.Show("Vous n'avez pas les droits pour accéder à cette fonctionnalité.", "Accès refusé", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            else
             {
-                Left = this.Left,
-                Top = this.Top,
-                Width = this.Width,
-                Height = this.Height
-            };
-            this.Hide();
-            rechercher.Show(); // Utilisez Show() au lieu de ShowDialog()
+                var rechercher = new Rechercher(this)
+                {
+                    Left = this.Left,
+                    Top = this.Top,
+                    Width = this.Width,
+                    Height = this.Height
+                };
+                this.Hide();
+                rechercher.Show(); // Utilisez Show() au lieu de ShowDialog()
+            }
+
         }
 
         private void menuCommande_Click(object sender, RoutedEventArgs e)
