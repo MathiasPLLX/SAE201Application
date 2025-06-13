@@ -51,6 +51,7 @@ namespace SAE201
         {
             StockageIdentifiant.IdentifiantStocke = null; // Réinitialiser l'identifiant stocké
             StockageIdentifiant.MdpStocke = null; // Réinitialiser le mot de passe stocké
+            StockageIdentifiant.RoleStocke= null; // Réinitialiser le rôle stocké
             this.Hide();
             var connexion = new Connexion()
             {
@@ -87,15 +88,25 @@ namespace SAE201
 
         private void menuCommande_Click(object sender, RoutedEventArgs e)
         {
-            MenuCommande refuserWindow = new MenuCommande(this)
+            if (StockageIdentifiant.RoleStockeByte == 1)
+                {
+                MessageBox.Show("Vous n'avez pas les droits pour accéder à cette fonctionnalité.", "Accès refusé", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            else
             {
-                Left = this.Left,
-                Top = this.Top,
-                Width = this.Width,
-                Height = this.Height
-            };
-            refuserWindow.Show();
-            this.Hide();
+                MenuCommande refuserWindow = new MenuCommande(this)
+                {
+                    Left = this.Left,
+                    Top = this.Top,
+                    Width = this.Width,
+                    Height = this.Height
+                };
+                refuserWindow.Show();
+                this.Hide();
+            }
+
+
         }
 
         private void menuDemande_Click(object sender, RoutedEventArgs e)

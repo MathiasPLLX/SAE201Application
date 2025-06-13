@@ -79,6 +79,27 @@ namespace SAE201
                     {
                         cmd.ExecuteScalar();
                     }
+
+                    // Récupérer le rôle associé à l'identifiant (login)
+                    using (var cmd = new NpgsqlCommand(@"
+                        SELECT r.NOMROLE 
+                        FROM EMPLOYE e 
+                        JOIN ROLE r ON e.NUMROLE = r.NUMROLE 
+                        WHERE e.LOGIN = @login", connection))
+                    {
+                        cmd.Parameters.AddWithValue("@login", identifiant);
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            StockageIdentifiant.RoleStocke = result.ToString();
+                        }
+                        else
+                        {
+                            // Si aucun rôle n'est trouvé, définir une valeur par défaut
+                            StockageIdentifiant.RoleStocke = "Non défini";
+                        }
+                    }
                 }
                 return true;
             }
@@ -121,6 +142,7 @@ namespace SAE201
         private static string identifiantStocke;
         private static string mdpStocke;
         private static string roleStocke;
+        private static byte roleStockeByte;
         public static string IdentifiantStocke
         {
             get
@@ -157,6 +179,17 @@ namespace SAE201
             set
             {
                 roleStocke = value;
+            }
+        }
+
+        public static byte RoleStockeByte
+        {
+            get
+            {
+                if (RoleStocke == "Vendeur")
+                    return 1;
+                else
+                    return 2;
             }
         }
     }
