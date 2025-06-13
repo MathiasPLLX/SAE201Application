@@ -134,7 +134,7 @@ namespace SAE201.Tests.ClassesVues
         {
             // Arrange
             var demande = new DemandeAffichage();
-            var dateFuture = DateTime.Today.AddDays(5);
+            var dateFuture = DateTime.Today.AddDays(-5);
 
             // Act
             demande.DateDemande = dateFuture;
@@ -149,7 +149,7 @@ namespace SAE201.Tests.ClassesVues
         {
             // Arrange
             var demande = new DemandeAffichage();
-            var datePassee = DateTime.Today.AddDays(-1);
+            var datePassee = DateTime.Today.AddDays(+1);
 
             // Act
             demande.DateDemande = datePassee;
