@@ -3,7 +3,7 @@ using SAE201.ClassesVues;
 using System;
 using System.ComponentModel;
 
-namespace SAE201.Tests.ClassesVues
+namespace SAE201Tests
 {
     [TestClass]
     public class DemandeAffichageTests
