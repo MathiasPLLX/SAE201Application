@@ -16,6 +16,20 @@ namespace SAE201
 
         private void butValiderDemande_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textNumClient.Text))
+            {
+                AjouterClient fenetreAjoutClient = new AjouterClient();
+                if (fenetreAjoutClient.ShowDialog() == true)
+                {
+                    textNumClient.Text = fenetreAjoutClient.NouveauNumClient.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Création du client annulée.", "Annulation", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+            }
+
             if (!int.TryParse(textNumVin.Text, out int numVin) ||
                 !int.TryParse(textNumClient.Text, out int numClient) ||
                 !int.TryParse(textQuantite.Text, out int quantite) ||
@@ -48,6 +62,7 @@ namespace SAE201
                 MessageBox.Show("Erreur lors de l’ajout : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
     }
 }
