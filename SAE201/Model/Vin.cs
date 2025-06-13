@@ -5,24 +5,17 @@ namespace SAE201.Model
 {
     public class Vin : ICrud<Vin>
     {
-        public int NumVin { get; set; }
-        public int NumFournisseur { get; set; }
-        public int NumType { get; set; }
-        public int NumAppelation { get; set; }
+        private int numVin,numFournisseur,numType,numAppelation;
+        private int? millesime;
+        private string nomVin, descriptif;
+        private decimal? prixVin;
+        private Fournisseur fournisseur;
+        private TypeVin typeVin;
+        private Appelation appelation;
+        private List<DetailCommande> detailsCommandes;
+        private List<Demande> demandes;
 
-        public string NomVin { get; set; }
-        public decimal? PrixVin { get; set; }
-        public string Descriptif { get; set; }
-        public int? Millesime { get; set; }
-
-        public Fournisseur Fournisseur { get; set; }
-        public TypeVin TypeVin { get; set; }
-        public Appelation Appelation { get; set; }
-
-        public List<DetailCommande> DetailsCommandes { get; set; }
-        public List<Demande> Demandes { get; set; }
-
-        // Propriétés récuparées pour affichage dans DataGrid
+        // Propriétés récuperées pour affichage dans DataGrid
         public string NomAppelation
         {
             get
@@ -42,6 +35,189 @@ namespace SAE201.Model
                     return TypeVin.NomType;
                 else
                     return "Non défini";
+            }
+        }
+
+        public int NumVin
+        {
+            get
+            {
+                return this.numVin;
+            }
+
+            set
+            {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value,0, "NumVin doit être supérieur à 0.");
+                this.numVin = value;
+            }
+        }
+
+        public int NumFournisseur
+        {
+            get
+            {
+                return this.numFournisseur;
+            }
+
+            set
+            {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "NumVin doit être supérieur à 0.");
+                this.numFournisseur = value;
+            }
+        }
+
+        public int NumType
+        {
+            get
+            {
+                return this.numType;
+            }
+
+            set
+            {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "NumVin doit être supérieur à 0.");
+                this.numType = value;
+            }
+        }
+
+        public int NumAppelation
+        {
+            get
+            {
+                return this.numAppelation;
+            }
+
+            set
+            {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "NumVin doit être supérieur à 0.");
+                this.numAppelation = value;
+            }
+        }
+
+        public int? Millesime
+        {
+            get
+            {
+                return this.millesime;
+            }
+
+            set
+            {
+                this.millesime = value;
+            }
+        }
+
+        public string NomVin
+        {
+            get
+            {
+                return this.nomVin;
+            }
+
+            set
+            {
+                this.nomVin = value;
+            }
+        }
+
+        public string Descriptif
+        {
+            get
+            {
+                return this.descriptif;
+            }
+
+            set
+            {
+                ArgumentNullException.ThrowIfNullOrWhiteSpace(value, "Descriptif ne peut pas être vide ou null.");
+                this.descriptif = value;
+            }
+        }
+
+        public decimal? PrixVin
+        {
+            get
+            {
+                return this.prixVin;
+            }
+
+            set
+            {
+                if (value.HasValue && value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "PrixVin ne peut pas être négatif.");
+                }
+                this.prixVin = value;
+            }
+        }
+
+        public Fournisseur Fournisseur
+        {
+            get
+            {
+                return this.fournisseur;
+            }
+
+            set
+            {
+                ArgumentNullException.ThrowIfNull(value, "Fournisseur ne peut pas être null.");
+                this.fournisseur = value;
+            }
+        }
+
+        public TypeVin TypeVin
+        {
+            get
+            {
+                return this.typeVin;
+            }
+
+            set
+            {
+                ArgumentNullException.ThrowIfNull(value, "TypeVin ne peut pas être null.");
+                this.typeVin = value;
+            }
+        }
+
+        public Appelation Appelation
+        {
+            get
+            {
+                return this.appelation;
+            }
+
+            set
+            {
+                ArgumentNullException.ThrowIfNull(value, "Appelation ne peut pas être null.");
+                this.appelation = value;
+            }
+        }
+
+        public List<DetailCommande> DetailsCommandes
+        {
+            get
+            {
+                return this.detailsCommandes;
+            }
+
+            set
+            {
+                ArgumentNullException.ThrowIfNull(value, "DetailsCommandes ne peut pas être null.");
+                this.detailsCommandes = value;
+            }
+        }
+
+        public List<Demande> Demandes
+        {
+            get
+            {
+                return this.demandes;
+            }
+
+            set
+            {
+                ArgumentNullException.ThrowIfNull(value, "Demandes ne peut pas être null.");
+                this.demandes = value;
             }
         }
 
@@ -86,7 +262,8 @@ namespace SAE201.Model
             var tableAppel = DataAccess.Instance.ExecuteSelect(cmdAppel);
             if (tableAppel.Rows.Count > 0)
             {
-                Appelation.NomAppelation = tableAppel.Rows[0]["nomappelation"].ToString();
+                // Fix for CS0120: Use the instance of Appelation instead of referencing the class directly
+                Appelation.NomAppelation = tableAppel.Rows[0]["nomappelation"]?.ToString(); // Fix for CS8601: Use null-conditional operator
             }
 
             TypeVin = new TypeVin { NumType = NumType };
@@ -95,7 +272,8 @@ namespace SAE201.Model
             var tableType = DataAccess.Instance.ExecuteSelect(cmdType);
             if (tableType.Rows.Count > 0)
             {
-                TypeVin.NomType = tableType.Rows[0]["nomtype"].ToString();
+                // Fix for CS0120: Use the instance of TypeVin instead of referencing the class directly
+                TypeVin.NomType = tableType.Rows[0]["nomtype"]?.ToString(); // Fix for CS8601: Use null-conditional operator
             }
         }
 
