@@ -4,7 +4,7 @@ using System.DirectoryServices.ActiveDirectory;
 
 namespace SAE201.Model
 {
-    public class Demande
+    public class Demande : ICrud<Demande>
     {
         public int NumDemande { get; set; }
 
