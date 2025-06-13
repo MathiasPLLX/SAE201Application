@@ -134,13 +134,13 @@ namespace SAE201.Tests.ClassesVues
         {
             // Arrange
             var demande = new DemandeAffichage();
-            var dateFuture = DateTime.Today.AddDays(-5);
+            var bonneDateDemande = DateTime.Today;
 
             // Act
-            demande.DateDemande = dateFuture;
+            demande.DateDemande = bonneDateDemande;
 
             // Assert
-            Assert.AreEqual(dateFuture, demande.DateDemande);
+            Assert.AreEqual(bonneDateDemande, demande.DateDemande);
         }
 
         [TestMethod]
