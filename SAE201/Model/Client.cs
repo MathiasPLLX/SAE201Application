@@ -7,10 +7,63 @@ namespace SAE201.Model
 {
     public class Client : ICrud<Client>
     {
-        public int NumClient { get; set; }
-        public string NomClient { get; set; }
-        public string PrenomClient { get; set; }
-        public string MailClient { get; set; }
+        private int numClient;
+        private string nomClient, prenomClient, mailClient;
+
+        public int NumClient
+        {
+            get
+            {
+                return this.numClient;
+            }
+
+            set
+            {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "Le numéro de client doit être supérieur à zéro.");
+                this.numClient = value;
+            }
+        }
+
+        public string NomClient
+        {
+            get
+            {
+                return this.nomClient;
+            }
+
+            set
+            {
+                ArgumentNullException.ThrowIfNullOrWhiteSpace(value, "Le nom du client ne peut pas être vide.");
+                this.nomClient = value;
+            }
+        }
+
+        public string PrenomClient
+        {
+            get
+            {
+                return this.prenomClient;
+            }
+
+            set
+            {
+                ArgumentNullException.ThrowIfNullOrWhiteSpace(value, "Le prénom du client ne peut pas être vide.");
+                this.prenomClient = value;
+            }
+        }
+
+        public string MailClient
+        {
+            get
+            {
+                return this.mailClient;
+            }
+
+            set
+            {
+                this.mailClient = value;
+            }
+        }
 
         public int Create()
         {
