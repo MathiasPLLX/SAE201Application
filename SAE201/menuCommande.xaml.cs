@@ -11,11 +11,11 @@ namespace SAE201
     /// </summary>
     public partial class MenuCommande : Window
     {
-        private MainWindow mainwindow_refuser;
+        private MainWindow mainwindow_menuCommande;
         public MenuCommande(MainWindow mainwindow)
         {
             InitializeComponent();
-            mainwindow_refuser = mainwindow;
+            mainwindow_menuCommande = mainwindow;
             DataContext = new CommandeTableau();
         }
 
@@ -26,10 +26,10 @@ namespace SAE201
 
         private void Button_Click_Accueil(object sender, RoutedEventArgs e)
         {
-            mainwindow_refuser.Left = this.Left;
-            mainwindow_refuser.Top = this.Top;
+            mainwindow_menuCommande.Left = this.Left;
+            mainwindow_menuCommande.Top = this.Top;
 
-            mainwindow_refuser.Show(); // Affiche la fenêtre principale
+            mainwindow_menuCommande.Show(); // Affiche la fenêtre principale
             this.Close(); // Ferme la fenêtre actuelle
         }
 
@@ -86,6 +86,18 @@ namespace SAE201
         {
             // Recharger les données
             DataContext = new CommandeTableau();
+        }
+
+        private void butEnregistrerCommande_Click(object sender, RoutedEventArgs e)
+        {
+            var enregistrer = new Enregistrer(mainwindow_menuCommande);
+            enregistrer.ShowDialog();
+        }
+
+        private void butAccueil_Click(object sender, RoutedEventArgs e)
+        {
+            mainwindow_menuCommande.Show();
+            this.Close();
         }
     }
     public class BoolToOuiNonConverter : IValueConverter

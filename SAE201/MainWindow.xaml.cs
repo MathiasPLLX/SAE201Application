@@ -121,22 +121,5 @@ namespace SAE201
             fenetreMenuDemande.Show();
             this.Hide();
         }
-
-        private void dgEtatDemande_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (dgEtatDemande.SelectedItem != null)
-            {
-                var demandeSelectionnee = dgEtatDemande.SelectedItem;
-
-                var fenetreDetails = new commanderDemande(demandeSelectionnee)
-                {
-                    Owner = this,
-                    Left = this.Left + 100,
-                    Top = this.Top + 100
-                };
-
-                fenetreDetails.ShowDialog();
-            }
-        }
     }
 }

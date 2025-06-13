@@ -5,20 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201"
         mc:Ignorable="d"
-        Title="Enregistrer" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Enregistrer" Height="450" Width="650" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
-        <Rectangle HorizontalAlignment="Center" Height="572" VerticalAlignment="Top" Width="1280" Fill="#FFFFDFDF" Margin="0,132,0,0"/>
-        <Rectangle HorizontalAlignment="Center" Height="132" VerticalAlignment="Top" Width="1280" Fill="#FFE5AEAE"/>
-        <Button x:Name="butQuitter" Content="Quitter" HorizontalAlignment="Left" Margin="1079,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butQuitter_Click"/>
-        <Button x:Name="butAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butAccueil_Click"/>
-        <Label Content="Enregistrer une demande" HorizontalAlignment="Center" Height="72" Margin="0,30,0,0" VerticalAlignment="Top" Width="575" FontSize="48" FontWeight="Bold"/>
-        <Label Content="Type de vin" HorizontalAlignment="Left" Margin="352,172,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
-        <TextBox x:Name="textBoxTypeVin" HorizontalAlignment="Left" Margin="352,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" Height="25"/>
-        <Label Content="Appellation du vin" HorizontalAlignment="Left" Margin="352,264,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
-        <TextBox x:Name="textBoxAppellationVin" HorizontalAlignment="Left" Margin="352,311,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" Height="25"/>
-        <Label Content="Date" HorizontalAlignment="Left" Margin="352,358,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
-        <DatePicker x:Name="datePickerDateVin" HorizontalAlignment="Left" Margin="352,418,0,0" VerticalAlignment="Top" Width="300" Height="25"/>
-        <Button x:Name="butValider" Content="Valider" HorizontalAlignment="Center" Margin="-300,623,0,0" VerticalAlignment="Top" Width="164" Height="30" FontSize="20"/>
-        <Button x:Name="butMettreEnAttente" Content="Mettre en attente" HorizontalAlignment="Center" Margin="300,623,0,0" VerticalAlignment="Top" Width="164" Height="30" FontSize="20"/>
+        <Rectangle HorizontalAlignment="Center" Height="434" VerticalAlignment="Center" Width="650" Fill="#FFFFDFDF"/>
+        <Button x:Name="butAnnuler" Content="Annuler" HorizontalAlignment="Left" Margin="437,342,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFE5AEAE" Click="butAnnuler_Click"/>
+        <Label Content="Numéro d'employé" HorizontalAlignment="Left" Margin="18,20,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+        <TextBox x:Name="textBoxNumEmploye" HorizontalAlignment="Left" Margin="18,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" Height="25"/>
+        <Label Content="Prix" HorizontalAlignment="Left" Margin="18,112,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+        <TextBox x:Name="textBoxPrix" HorizontalAlignment="Left" Margin="18,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" Height="25"/>
+        <Button x:Name="butValider" Content="Valider" HorizontalAlignment="Left" Margin="51,342,0,0" VerticalAlignment="Top" Width="164" Height="30" FontSize="20" Click="butValider_Click" Background="#FFE5AEAE"/>
+        <Button x:Name="butMettreEnAttente" Content="Mettre en attente" HorizontalAlignment="Center" Margin="0,342,0,0" VerticalAlignment="Top" Width="164" Height="30" FontSize="20" Click="butMettreEnAttente_Click" Background="#FFE5AEAE"/>
     </Grid>
 </Window>
