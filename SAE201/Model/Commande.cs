@@ -5,21 +5,150 @@ namespace SAE201.Model
 {
     public class Commande : ICrud<Commande>
     {
-        public int NumCommande { get; set; }
-        public int NumEmploye { get; set; }
-        public DateTime? DateCommande { get; set; }
-        public bool? Valider { get; set; }
-        public decimal? PrixTotal { get; set; }
+
+        private int numCommande, numEmploye;
+        private DateTime? dateCommande;
+        private bool? valider;
+        private decimal? prixTotal;
+        private int? quantiteCommande;
+        private string nomVin;
+        private Employe employe;
+        private List<DetailCommande> detailsCommandes = new List<DetailCommande>();
 
         // Propriétés pour l'affichage dans le DataGrid
-        public string CommandeValidee => Valider.HasValue ? (Valider.Value ? "Oui" : "Non") : "Non défini";
-        public int? QuantiteCommande { get; set; }
-        public decimal? PrixTotalCommande => PrixTotal;
-        public string NomVin { get; set; }
+        public string CommandeValidee
+        {
+            get
+            {
+                return Valider.HasValue ? (Valider.Value ? "Oui" : "Non") : "Non défini";
+            }
+        }
+
+        public int? QuantiteCommande
+        {
+            get
+            {
+                return this.quantiteCommande;
+            }
+
+            set
+            {
+                this.quantiteCommande = value;
+            }
+        }
+
+        public decimal? PrixTotalCommande
+        {
+            get
+            {
+                return this.PrixTotal;
+            }
+        }
+
+        public string NomVin
+        {
+            get
+            {
+                return this.nomVin;
+            }
+
+            set
+            {
+                this.nomVin = value;
+            }
+        }
 
         // Objets liés
-        public Employe Employe { get; set; }
-        public List<DetailCommande> DetailsCommandes { get; set; } = new List<DetailCommande>();
+        public Employe Employe
+        {
+            get
+            {
+                return this.employe;
+            }
+
+            set
+            {
+                this.employe = value;
+            }
+        }
+
+        public List<DetailCommande> DetailsCommandes
+        {
+            get
+            {
+                return this.detailsCommandes;
+            }
+
+            set
+            {
+                this.detailsCommandes = value;
+            }
+        }
+
+        public int NumCommande
+        {
+            get
+            {
+                return this.numCommande;
+            }
+
+            set
+            {
+                this.numCommande = value;
+            }
+        }
+
+        public int NumEmploye
+        {
+            get
+            {
+                return this.numEmploye;
+            }
+
+            set
+            {
+                this.numEmploye = value;
+            }
+        }
+
+        public DateTime? DateCommande
+        {
+            get
+            {
+                return this.dateCommande;
+            }
+
+            set
+            {
+                this.dateCommande = value;
+            }
+        }
+
+        public bool? Valider
+        {
+            get
+            {
+                return this.valider;
+            }
+
+            set
+            {
+                this.valider = value;
+            }
+        }
+
+        public decimal? PrixTotal
+        {
+            get
+            {
+                return this.prixTotal;
+            }
+
+            set
+            {
+                this.prixTotal = value;
+            }
+        }
 
         // Constructeurs
         public Commande() { }
@@ -179,14 +308,14 @@ namespace SAE201.Model
                                                e.NOM as NomEmploye, e.PRENOM as PrenomEmploye,
                                                SUM(dc.QUANTITE) as TotalQuantite,
                                                STRING_AGG(v.NOMVIN, ', ') as NomsVins
-                                        FROM COMMANDE c
-                                        LEFT JOIN EMPLOYE e ON c.NUMEMPLOYE = e.NUMEMPLOYE
-                                        LEFT JOIN DETAILCOMMANDE dc ON c.NUMCOMMANDE = dc.NUMCOMMANDE
-                                        LEFT JOIN VIN v ON dc.NUMVIN = v.NUMVIN
-                                        WHERE " + criteres + @"
-                                        GROUP BY c.NUMCOMMANDE, c.NUMEMPLOYE, c.DATECOMMANDE, c.VALIDER, c.PRIXTOTAL,
-                                                 e.NOM, e.PRENOM
-                                        ORDER BY c.NUMCOMMANDE;");
+                                               FROM COMMANDE c
+                                               LEFT JOIN EMPLOYE e ON c.NUMEMPLOYE = e.NUMEMPLOYE
+                                               LEFT JOIN DETAILCOMMANDE dc ON c.NUMCOMMANDE = dc.NUMCOMMANDE
+                                               LEFT JOIN VIN v ON dc.NUMVIN = v.NUMVIN
+                                               WHERE " + criteres + @"
+                                               GROUP BY c.NUMCOMMANDE, c.NUMEMPLOYE, c.DATECOMMANDE, c.VALIDER, c.PRIXTOTAL,
+                                                        e.NOM, e.PRENOM
+                                               ORDER BY c.NUMCOMMANDE;");
 
             var table = DataAccess.Instance.ExecuteSelect(cmd);
             return ConvertToList(table);
