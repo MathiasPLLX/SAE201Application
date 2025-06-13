@@ -23,6 +23,7 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0, "Le numéro de vin doit être supérieur à zéro.");
                 if (this.numVin != value)
                 {
                     this.numVin = value;
@@ -39,6 +40,7 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                ArgumentNullException.ThrowIfNullOrWhiteSpace(value, "Le nom du vin ne peut pas être vide.");
                 if (this.nomVin != value)
                 {
                     this.nomVin = value;
@@ -55,6 +57,7 @@ namespace SAE201.ClassesVues
             }
             set
             {
+                ArgumentNullException.ThrowIfNullOrWhiteSpace(value, "Le nom de l'appelation ne peut pas être vide.");
                 if (this.nomAppelation != value)
                 {
                     this.nomAppelation = value;

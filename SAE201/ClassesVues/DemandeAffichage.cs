@@ -101,10 +101,6 @@ namespace SAE201.ClassesVues
             }
             set
             {
-                if (value.Date < DateTime.Today)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(value), "La date de demande ne peut pas être antérieure à aujourd'hui.");
-                }
                 if (this.dateDemande != value)
                 {
                     this.dateDemande = value;
