@@ -8,17 +8,14 @@
         mc:Ignorable="d"
         Title="Menu de Gestion des Commandes" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Window.Resources>
-        <!-- Liste booléenne [True, False] -->
         <x:Array x:Key="BoolValues" Type="{x:Type sys:Boolean}">
             <sys:Boolean>True</sys:Boolean>
             <sys:Boolean>False</sys:Boolean>
         </x:Array>
-        <!-- Valeurs Oui / Non -->
         <x:Array x:Key="OuiNonListe" Type="{x:Type sys:String}">
             <sys:String>Oui</sys:String>
             <sys:String>Non</sys:String>
         </x:Array>
-        <!-- Converter -->
         <local:BoolToOuiNonConverter x:Key="BoolToOuiNonConverter" />
     </Window.Resources>
     <Grid>
@@ -39,9 +36,10 @@
         </DataGrid>
 
         <Button x:Name="butAccueil" Content="Accueil" HorizontalAlignment="Left" Margin="61,51,0,0" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Background="#FFFFDFDF" Click="butAccueil_Click"/>
-
-        <Button x:Name="butValiderCommande" Content="Valider" Height="35" FontSize="20" BorderBrush="Black" Background="#FFE5AEAE" Click="butValiderCommande_Click" Margin="328,580,773,89"/>
-        <Button x:Name="butMettreEnAttente" Content="Mettre en attente" Height="35" FontSize="20" BorderBrush="Black" Background="#FFE5AEAE" Click="butMettreEnAttente_Click" Margin="771,580,296,89"/>
+        <StackPanel Margin="206,462,206,53" Width="800" Height="200">
+            <Button x:Name="butValiderCommande" Content="Valider" Height="50" FontSize="20" BorderBrush="Black" Background="#FFE5AEAE" Click="butValiderCommande_Click" Width="216"/>
+            <Button x:Name="butMettreEnAttente" Content="Mettre en attente" FontSize="20" BorderBrush="Black" Background="#FFE5AEAE" Click="butMettreEnAttente_Click" Height="50" Width="216" Margin="0,50,0,0"/>
+        </StackPanel>
 
     </Grid>
 </Window>
