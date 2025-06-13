@@ -67,7 +67,7 @@ namespace SAE201
         private bool TesterConnexionBDD(string identifiant, string motDePasse)
         {
             string connectionString = $"Host=localhost;Port=5432;Username={identifiant};Password={motDePasse};Database=SAE201BDD;Options='-c search_path=production'";
-
+            //$"Host=srv-peda-new;Port=5433;Username={StockageIdentifiant.IdentifiantStocke};Password={StockageIdentifiant.MdpStocke};Database=SAE201BDD_Pailloma;Options='-c search_path=production'";
             try
             {
                 using (var connection = new NpgsqlConnection(connectionString))

@@ -38,6 +38,7 @@ namespace SAE201
 
                 // Connexion à la base de données
                 string connectionString = $"Host=localhost;Port=5432;Username={StockageIdentifiant.IdentifiantStocke};Password={StockageIdentifiant.MdpStocke};Database=SAE201BDD;Options='-c search_path=production'";
+                //$"Host=srv-peda-new;Port=5433;Username={StockageIdentifiant.IdentifiantStocke};Password={StockageIdentifiant.MdpStocke};Database=SAE201BDD_Pailloma;Options='-c search_path=production'";
                 using (var connection = new NpgsqlConnection(connectionString))
                 {
                     connection.Open();

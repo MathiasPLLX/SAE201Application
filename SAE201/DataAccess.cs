@@ -9,6 +9,7 @@ namespace SAE201
     {
         private static readonly DataAccess instance = new DataAccess();
         private readonly string connectionString = $"Host=localhost;Port=5432;Username={StockageIdentifiant.IdentifiantStocke};Password={StockageIdentifiant.MdpStocke};Database=SAE201BDD;Options='-c search_path=production'";
+        //$"Host=srv-peda-new;Port=5433;Username={StockageIdentifiant.IdentifiantStocke};Password={StockageIdentifiant.MdpStocke};Database=SAE201BDD_Pailloma;Options='-c search_path=production'";
         private NpgsqlConnection connection;
 
         public static DataAccess Instance
